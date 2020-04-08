@@ -1,0 +1,124 @@
+# Cloudera Data Science Workbench
+
+## CDSW Lab Preparation
+
+1. Fork this repository into your own GitHub user space. Either make your repo public, or share it with your instructor.
+
+2. Log in to CDSW using the URL and credentials provided by your instructor.
+
+## Lab: Introduction to CDSW
+
+1. Familiarize yourself with the CDSW interface including the Projects and Settings pages.
+  * How many vCPU are in this CDSW cluster? How many are available?
+  * Add your job title and company name into the Bio field of your User Settings > Profile page.
+
+    CDSW runs on a gateway node, also called an edge node, of a Cloudera cluster. Cloudera's enterprise customers typically run secure clusters, using the Kerberos authentication protocol. CDSW makes it easy to authenticate to a cluster using Kerberos.
+
+2. Add your Kerberos credentials in the User Settings > Hadoop Authentication page. The instructor will provide you with your Kerberos credentials.
+
+    CDSW integrates with Git and Git hosting services such as GitHub, Bitbucket etc. You can create a new CDSW project from a publically available Git repo with nothing more than the URL, but if you are working with a privately hosted project and/or you plan to push changes back to the server, you will need to authenticate using SSH.
+
+3. Copy the public SSH key from your User Settings > SSH Keys page. Add this public key to your GitHub account so that CDSW can authenticate with GitHub.
+
+    Projects are how you organize work in CDSW, and you'll spend most of your time in CDSW working inside projects.
+
+4. Create a new private project by cloning the Git repository you created earlier. Because your repository is privately hosted, you will need to use SSH (not HTTPS).
+
+5. Familiarize yourself with the navigation interface within a project. Note that the tiles you see on the left, e.g. Jobs and Sessions, are specific to this project, as opposed to the Jobs and Sessions pages you saw earlier which were generic to all of your projects.
+  * Add a description to your project in the Project Settings > Options page.
+  * Confirm the version of the engine being used by your CDSW project.
+
+6. Using the Files interface, create a new folder called `data` and move `flights.csv` into this directory.
+
+7. Download the file stored at `https://s3.amazonaws.com/cdsw-training/airlines.csv` and upload this file into the same `data` directory.
+
+    CDSW allows you to set environment variables for your project. For more information on environment variables, see: `https://www.cloudera.com/documentation/data-science-workbench/latest/topics/cdsw_environment_variables.html`
+
+8. Add an environment variable to your project called `HOME_AIRPORT` with the IATA 3 letter code of your local airport as its value, e.g. LHR or SFO.
+
+    The Workbench is where you interact with the code in your projects. Its main components are the editor, for writing, changing and selecting code, and the session pane, for executing ad-hoc commands and viewing the output of code. The primary way to get to the workbench is by clicking this Open Workbench button at upper right of the project overview page.
+
+9. Open the Workbench, and use the Files sidebar to open the file `example.py` in the editor. Change the code that references `flights.csv` to reference `data/flights.csv` to reflect its new location, and use the File menu to save your changes. CDSW's find feature can help you make sure there are no other places you need to make the change. Do the same in example.R .
+
+    CDSW sessions are Docker containers, created from a Docker image, called an engine image in CDSW. The files in your project are mounted to this container when it is provisioned. When starting a CDSW session you also select a kernel, i.e. the program that will be used to run your code, such as Python or R.
+
+10. In the Workbench, launch a session with the Python 3 kernel, selecting the minimum resource profile available, and wait for the session to be ready, i.e. "Running".
+
+11. At the top of the session pane you will see an option to edit the session name. Call your session "Introduction to CDSW".
+
+12. Highlight all the lines in the "Basics" section of `example.py` (lines 17 through 36), and click "Run Line(s)" in the Run menu to run these lines and see the output in the session console. Note how the code lines are displayed in the session pane with their output on the next line.
+
+13. Now highlight all the lines in the "Markdown" section of `example.py` (lines 39 through 69), and click "Run Line(s)" in the Run menu to run these lines and see the output in the session console. Note how the commented lines are displayed as Markdown.
+
+14. Use the session prompt in the bottom right to run your own simple Python commands.
+
+    CDSW supports Jupyter magics as described here: `https://www.cloudera.com/documentation/data-science-workbench/latest/topics/cdsw_jupyter.html`
+
+15. Try running a simple command with the `!` shell magic, e.g. type `!ls` in the command prompt.
+
+    Recall that each time you start a session, CDSW creates a new Docker container. Previously we used the Jupyter shell magic to execute shell commands in this Docker container. CDSW also provides a terminal window for your Docker container.
+
+16. Open the terminal from your CDSW session. When the terminal opens, you'll see an operating system command prompt. This is the Bash shell, so you can run familiar Linux commands here. Use Linux commands to establish your Linux user name within the session, show your current working directory, and list the files in that directory. Run the `klist` command to see your Kerberos principal.
+
+17. You can also run git commands, either in the terminal or in the CDSW session prompt with the `!` magic. Because we made some changes earlier relating to our file reorganization, use the usual git commands to get the status of these changes, commit them, and push the commit to your GitHub repo.
+
+    CDSW comes with certain packages preinstalled, as detailed here: `https://www.cloudera.com/documentation/data-science-workbench/latest/topics/cdsw_engines_packaging.html`
+
+18. Verify that matplotlib is installed by importing it in the command prompt of your session.
+
+    You can also install packages of your own choice as detailed here: `https://www.cloudera.com/documentation/data-science-workbench/latest/topics/cdsw_install_pkg_lib.html`
+
+19. folium is not one of the pre-installed packages. Verify that you are unable to import the package folium, then install it using pip3 and verify that you can now import it.
+
+    It is simple to run HDFS and Spark commands on the cluster from CDSW. The file `example.py` contains some examples.
+
+20. Highlight all the lines in the "Copying Files to HDFS" section of `example.py` (lines 72 through 98), and click "Run Line(s)" in the Run menu to run these lines and see the output in the session console and read through the output. Confirm that the commands were successful by using the `hdfs ls` command in the session prompt.
+
+21. Add additional code to the same section to add the `airlines.csv` file to a new `airlines` directory in HDFS.
+
+22. Run the lines in the "Connecting to Spark" subsection of "Using Apache Spark 2 with PySpark" and read through the output.
+
+22. Run the lines in the "Reading Data" subsection of "Using Apache Spark 2 with PySpark" and read through the output.
+
+23. Add additional code to load the airlines data into a Spark DataFrame called `airlines`, and run your code.
+
+24. Run the lines in the "Inspecting Data" subsection and read through the output.
+ 
+25. Add additional code to inspect the schema of `airlines`, and to print the first five rows as a pandas html table, and run your code.
+
+26. Run the lines in the "Transforming Data" subsection and read through the output. 
+
+27. Add additional code to show the total number of flights and average delay for each two-letter carrier code, and run your code.
+
+28. Run the lines in the "Using SQL Queries" subsection and read through the output.
+
+29. Add additional code to create a temporary view for the airlines data, and run your code.
+
+30. Add additional code to run a Spark SQL query to show the total number of flights and average delay for each carrier. Add a `JOIN` to your query to show the carrier's full name, instead of their two-letter code.
+
+31. Run the lines in the "Visualizing Data from Spark" subsection and read through the output.
+
+32. Run the lines in the "Machine Learning with MLlib" subsection and read through the output.
+
+33. Run the line in the "Cleanup" subsection to disconnect from Spark.
+
+34. Commit and push to Github the changes you made to the code.
+
+35. When you are finished with this lab, close your CDSW session to release the resources you were using.
+
+## Challenge Exercises
+
+1. Earlier we set a project environment variable called `HOME_AIRPORT`. Use the documentation for environment variables and the examples already provided to add code that displays a count of the number of flights to your home airport from each of the different departure airports in this dataset. Try changing the environment variable in the settings page and running the code again to see the different results.
+
+2. Similarly, show the number of flights for different airlines to your home airport. Display the airlines' full names as listed in `airlines.csv`. Output two tables: one containing counts for all 16 airlines, and one containing only the airlines that actually had flights to your home airport.
+
+3. Choose one of the tables you produced in the previous exercises and plot the results as a bar chart. Add a title to your chart, which should change dynamically if you change the `HOME_AIRPORT` environment variable.
+
+4. Investigate the departure delays for different  combinations of airlines and departure airports flying to your home airport. Which airport-airline combination has the shortest average delay?
+
+5. Create a new column to derive the number of minutes past midnight of the scheduled departure time and plot a scatter chart to illustrate the relationship between scheduled departure time and departure delay for a sample of the dataset. Does the chart suggest a correlation?
+
+6. (*) Use Spark ML to calculate the Pearson correlation coefficient for scheduled departure minutes past midnight and departure delay. Comment on your result.
+
+7. (**) (Assumes familiarity with linear regression.) Create a DataFrame containing the average departure delay for each carrier and another containing the average departure delay for each departure airport. Join these DataFrames with the flights data to add two additional columns: `carrier_average_delay` and `airport_average_delay`. Use Spark ML and linear regression to suggest which has, on average, a greater impact on actual delay. Comment on your result.
+

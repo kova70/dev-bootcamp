@@ -1,0 +1,125 @@
+= Cloudera Application Architecture in the Cloud Bootcamp
+
+April 20- 24, 2019 - Palo Alto California
+
+* <<introductions_overview, Introductions & Overview>>
+* <<audience_assumptions, Audience Assumptions>>
+* <<course_objectives, Course Objectives>>
+* <<course_plan, Course Plan>>
+* <<expected, Expected From You!>>
+* <<friday_morning_challenge_phase, Friday Morning: Challenge Phase>>
+* <<submitting_work, Submitting Work>>
+
+=== Overview
+
+This boot camp is a hands-on training session designed new hire members of the consulting
+and pre-sales organizations.
+
+We focus on the common elements of a professional services engagement
+
+1. Data Science
+1. data ingestion
+1. data batch processing and querying
+1. data streaming
+
+We are going to:
+
+* Expanding out a single use case solution over the week.
+* Simulating a customer engagement with real problem solving
+
+=== Prerequisites
+
+We've designed this training as a exercises of getting started with the
+Cloudera public cloud stack.
+
+While there are no hard prerequisites, everyone who attends should have:
+
+* An IDE ( possibly intellij ) deployed on their laptop
+* Developed and ran a hello world application in Scala or Python in their IDE
+** Some comfort level in working with AWS
+** Some comfort level in working with Linux
+** Some basic programing skills
+** Basic familiarity with Git.
+
+
+[[course_objectives]]
+== Course Objectives
+
+* Prepare you to install an EDH cluster for production use
+* Evaluate your readiness for a service engagement
+* Identify next steps in your own skills development for EDH
+
+[[expected]]
+== Expected From You!
+
+* If you find something very easy, help someone else figure it out
+* Try to solve blockers as a group before reaching out
+* Also don’t get bogged down with an error for too long
+* Capture information about what you achieved, what worked well, what was challenging, and metrics such as performance
+
+[[course_plan]]
+== Course Plan
+
+|===
+|Time |Monday | Tuesday |Wednesday |Thursday |Friday
+
+|Morning
+|Course Intro, CDP Lecture
+|Ingestion Lecture
+|ETL Lecture and Hands On
+|Data Streaming Storage Lecture and Hands On
+|Data Science Introduction
+
+|Afternoon
+|CDP deployment in AWS
+|Ingestion Hand on Labs
+|DW Lecture and Hands On
+|Data Streaming Processing Lecture and Hands On
+|Data Science Hands on
+|===
+
+
+[[submitting_work]]
+== Submitting Work
+
+* All work is submitted to your GitHub repo
+** Add your instructors as Collaborators
+** We'll review git/GitHub tools in class
+** Use AsciiDoc for text and PNG format for screenshots
+* We score each lab/challenge as `Complete`, `Incomplete`, or `Did Not Submit`
+* The final evaluation is `Pass`, `Provisional Pass`, or `No Pass`
+* We evaluate your labs for
+** Completing tasks as directed
+** Documenting your progress on a regular basis
+** Showing your work
+
+=== Use Case
+
+link:https://nyti.ms/2jRIEnF[ Gravitational wave ]
+
+Your mission should you choose to accept it:
+
+* Find gravitational waves in astronomical detector measurements
+* Provide the measurement data set for end user querying
+
+You should:
+
+* Make it easy to query for finding the gravitational waves
+* Make the queries run fast
+* Minimize the time for measurements to be available after they are made
+* Minimize the effort involved in loading new measurements
+
+==== Data Model
+
+One record is one measurement:
+
+Each measurement is:
+* At a point in time
+* Made up of three signal amplitudes
+* From a gravitational wave detector somewhere in the world
+* Being performed by an astrophysicist
+* Listening to a nearby galaxy
+
+`*A gravitational wave is detected when the first and third amplitudes are > 0.995, and the second amplitude is < 0.005*`
+
+Now let's get to the tech!

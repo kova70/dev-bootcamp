@@ -1,0 +1,39 @@
+
+<workflow-app name="Shell" xmlns="uri:oozie:workflow:0.4">
+    <start to="forking"/>
+    <fork name="forking">
+        <path start="Shell"/>
+        <path start="Shell2"/>
+    </fork>
+
+    <action name="Shell">
+        <shell xmlns="uri:oozie:shell-action:0.1">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <exec>hello.py</exec>
+              <argument>World!</argument>
+            <file>hello.py#hello.py</file>
+              <capture-output/>
+        </shell>
+        <ok to="joining"/>
+        <error to="kill"/>
+    </action>
+
+    <action name="Shell2">
+        <shell xmlns="uri:oozie:shell-action:0.1">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <exec>hello.py</exec>
+              <argument>World2!</argument>
+            <file>hello.py#hello.py</file>
+              <capture-output/>
+        </shell>
+        <ok to="joining"/>
+        <error to="kill"/>
+    </action>
+    <join name="joining" to="end"/>
+    <kill name="kill">
+        <message>Action failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+    </kill>
+    <end name="end"/>
+</workflow-app>
