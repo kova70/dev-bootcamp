@@ -1,0 +1,19 @@
+
+== Data Warehouse
+
+Basically the quering of data. Once the ETL, or better said the data engineering is done,
+we deploy a SQL engine to query the used data
+
+=== Impala
+
+<TODO>
+
+
+
+
+
+
+
+
+
+

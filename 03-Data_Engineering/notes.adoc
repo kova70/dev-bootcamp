@@ -1,4 +1,70 @@
 
+== Data Engineering
+
+Some people might still call it ETL, though ETL also encompasses ingestion
+and it a bit of an older concept
+
+=== Query the data
+
+Basically the process of taking data out of the cluster
+
+Not necessarily the same data model as what was ingested:
+* Strive for the best user experience possible
+* Balance coverage, performance, and simplicity
+
+Transforming/processing data upfront can make querying better
+* Use Hive or Spark for this process
+* Trade off, ease of ingestion vs easy of consumption.
+
+=== Data Modeling
+
+* Tables
+* Partitions
+* File formats
+* Compression
+* Data types
+* Statistics
+* Caching
+
+Advanced data modeling discussion: link:http://tiny.cloudera.com/datamodelingtalk_link[ Data Modeling ]
+
+==== SQL
+
+SQL has been around for decades and is very well known.
+Not always the best tool, but the most universal.
+
+* Allows access to the cluster’s data without any programming
+* Used by many code-gen tools, BI ETL etc.
+
+Impala is our SQL engine for end user data access
+* Much faster than Hive for analytics queries
+* Written from scratch in C++, no MapReduce or Spark under the hood
+* Provides standard JDBC/ODBC interfaces
+* More sensitive to custer instability use Hive for ETL workloads.
+
+Alternative Hive LLAP (Live Long And Process) - HDP and CDP
+* Hybrid execution model
+* Pre-fetching and caching, JIT optimizations, etc…
+
+=== Other query tools
+
+Search
+
+* Solr
+
+Key lookups
+
+* HBase, Kudu
+
+Bulk extracts
+
+* Hive, hdfs dfs –get, etc.
+
+Data science
+
+* CDSW (R, Python, Scala)
+
+
 = Batch Processing
 
 Basically automated ingest and transformation on a schedule
@@ -18,7 +84,7 @@ that falls in to the steaming category and is covered in the next lesson
 
 === Defining Workflow of a batch process
 
-We typically use Oozie ti define a dependecy graph of steps
+We typically use Oozie ti define a dependency graph of steps
 
 image::png/DG_Overview.png[Oozie wofkflow]
 
@@ -108,54 +174,6 @@ into physical objects like files and folders ( or Object store locations ).
 image::png/hive_remotemetastore.jpg[Oozie wofkflow]
 
 Hive Metastore is shared across all engines to use SQL, including Hive, Impala and Spark SQL
-
-=== Exercise 1
-
-Let's start by automating the code we developed yesterday.
-
-Write and execute an Oozie workflow that:
-1. runs the sqoop job in parallel
-2. than run Hive transformation
-
-As a single workflow
-
-Place the oozie workflow file and configuration file in labs/workflow.xml and labs/wf.conf
-respectively
-
-=== Exercises 2
-
-Develop Spark code that performs the following transformations
-
-1. Joins all the tables
-2. saved as Parquet
-3. Correct data types
-4. Adds a flag attribute for gravitational waves
-
-You can develop this code in either Scala or Python.
-
-TIP: When developing Sacala code use the REPL to prototype your code. Don't try to compile
-it every time. You will loose you mind. Once the code works in the REPL create and executable
-and run with spark submit.
-
-For SAs extra challenge do it in both languages.
-
-Place the work source code in the file labs/spark.py or labs/spark.scala depending on which
-language you chose
-
-=== Exercises 3
-
-Modify the Oozie from Exercises 1 to execute the Spark code rather than the Hive query
-
-=== Exercises 4
-
-Create an Oozie coordinator to execute the entire workflow from Exercises 3 twice a day.
-
-Place the coordinator file in labs/workflow.cord
-
-
-
-
-
 
 
 

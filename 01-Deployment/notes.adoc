@@ -3,7 +3,7 @@
 
 === What is CDP
 
-* Get away from zoo animals, too granular and confusing
+* Get away from the link:https://docs.cloudera.com/runtime/7.0.3/release-notes/topics/rt-runtime-component-versions.html[zoo animals], too granular and confusing
 
 Bsaically we have:
 
@@ -14,6 +14,8 @@ Bsaically we have:
 ** Need external stoarge either HDFS / S3 / ADLS / Ozone ( soon )
 ** Deployed in OpenShift for open prem ( called private cloud )
 ** Deployed as on EKS, AKS on cloud
+* If there isn't an exerience to your linking
+** Cloud has DataHub with is VM based deployment of components based on template
 
 
 image::png/cdp.png[Cloud Setup]
@@ -26,6 +28,7 @@ Experience Packaging ( may change in the future ):
 ** Kafka
 ** Flink
 * Data Engineering
+** Hive
 ** Spark
 * Data Warehouse
 ** Hive
@@ -33,13 +36,29 @@ Experience Packaging ( may change in the future ):
 * Operational DB
 ** HBase
 * Machine Learning
-** CDSW
+** Spark
+** R
+
+For on prem world see link:https://docs.cloudera.com/cloudera-manager/7.0.3/installation/topics/cdpdc-select-services.html[the documentation]
+
+For all ths to work we need a Data Lake. Data lake is composed of
+
+* Ranger
+* ID Broker
+* FreeIPA
+* Atlas
+
+All this is controlled from the control plane, single deployment by Cloudera in our
+own private space where clients access via web portal
 
 === Deployment Process for Cloud
 
 1. Deploy Environment = Data Lake
 1. Setup stoarge in S3 an permissions as needed
 1. Deploy experiences / datahub as needed for data processing / use
+
+Data lakes are usually long lived, experinces should be on for as long as it takes to complete the tasks.
+For long lived cluster on premises might be more cost effective.
 
 === AWS Concepts we need to understand
 
@@ -53,7 +72,7 @@ Experience Packaging ( may change in the future ):
 * AWS assume role
 * DynamoDB for link:https://docs.cloudera.com/cloudera-manager/7.0.3/managing-clusters/topics/cm-s3guard.html[s3 guard]
 * link:https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html[ARN]
-
+* link:https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html[Cross account role]
 
 == Data Lake Deployment
 
@@ -67,6 +86,4 @@ link:https://docs.google.com/document/d/1BTTrZ7NijD-xCrlg1YYfHBDjN3KYLEKku3b3sOZ
 
 link:https://docs.cloudera.com/management-console/cloud/environments/topics/mc-edit-idb-mappings.html[[CDP Deployment Public Doc]
 
-Exercise 1
 
-Deploy a data lake :)

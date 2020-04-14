@@ -1,0 +1,31 @@
+
+=== Exercise 0 - Preparation
+
+Time to build a steaming pipeline for our gravitational wave detector.
+
+To create at steam of data use the generator available in github:
+link:http://tiny.cloudera.com/gravity-generator[Data Generator].
+
+To run the downloaded jar the syntax is:
+
+....
+java -cp bootcamp-0.1.0.jar com.cloudera.fce.bootcamp.MeasurementGenerator <hostname> <port>
+....
+
+To view the data steam you can use the `nc` command
+
+=== Exercise 1
+
+Use NiFi to create a pipeline where the generated data is inserted into Kafka
+
+You want to make sure the data is unchanged in the process.
+
+Take a screenshot of relevant part of your canvas and put into labs/nifi.png
+
+=== Exercises 2
+
+Use NiFi to create a pipeline where the generated non measuremnets data into HBase
+
+You want to make sure the data is unchanged in the process.
+
+Take a screenshot of relevant part of your canvas and put into labs/nifi.png

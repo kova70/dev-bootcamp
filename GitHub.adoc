@@ -1,0 +1,199 @@
+== GitHub Information
+
+During this boot camp please follow the guidelines below:
+
+* Use GitHub only to receive your lab work by pushing from your local
+copy. Treat your GitHub repo like a backup to what is on your laptop.
+Doing so will save a lot of headaches around maintaining the repo, The only changes you should make directly
+to your GitHub copy are Issues and Milestones, which are described in
+below.
+
+* Add your instructors as Collaborators to your GitHub repo. Because
+we have 25 students and only a few people to facilitate labs, we'll give
+you all the GitHub names you need at the beginning of class.
+The instructors' GitHub names are: `alexciobanu`
++
+Adding your instructors as Collaborators will let them create _pull
+requests_ on your work. This is a way of editing your submissions
+without changing them directly.  When you review instructor edits,
+you can choose to reject them. Perhaps you would like to correct
+problems a different way or ignore them for a while. The pull request
+stands as a record of that interaction.
+
+* We use GitHub's _Issues_ feature to establish a workflow around your
+lab submissions.
++
+For each lab section, such as Installation or Storage, you will use
+an _Issue_ to track your progress. You will also use GitHub _Labels_
+to mark the current state of each lab (e.g., `submitted`, `stuck`,
+`review`). Your instructors will use labels to evaluate your work
+once you have marked it for review (such as `complete` or 'incomplete`).
++
+In a large class, it may take some time for an instructor to help you with a difficult problem.
+Use the Issue to describe the problem and show what diagnostic work you've tried to isolate your problem.
++
+You can include error messages or stack traces as Issue comments,
+or take a screenshot to show your cluster's current condition.  It
+is quite possible these initial steps will help you solve the problem
+yourself. Otherwise, they will show an instructor what you have
+tried so far.
+
+* Finally, we will use GitHub _Milestones_ to separate your lab work
+from your challenge work.
+
+Before you start any labs, make the following changes to your GitHub
+repo:
+
+* Add collaborators under `Settings -> Collaborators`.
+* Enable `Issues` under `Settings -> Options`. Click the `Features` box and enable `Issues`.
+* Click the `Issues` tab and the `Milestones` button
+** Create two milestones: `Labs` and `Challenges`
+** Set the deadlines for Thursday and Friday.
+* Click the `Labels` button and change your labels as follows:
+** Change `bug` to `stuck`
+** Change `duplicate` to `started`
+** Change `enhancement` to `didNotSubmit`
+** Change `help wanted` to `complete`
+** Change `invalid` to `review`
+** Add the label `WorkInProgress` and make it purple.
+** Change `wontfix` to `incomplete`; set the label color to `#fbca04`.
+** Leave the `question` Issue as it is
+
+One of the instructors will open an issue on your repo to acknowledge
+your invitation to collaborate. They will also review your repo for
+all the settings described here, and point out anything that isn't
+setup correctly. This issue will be the only one you're asked to
+close.  All other issues are to be closed by an instructor to show
+no further review is needed.
+
+= Git/Github Tips
+
+* <<accepting_changes_to_the_course_material, Accepting Changes to the Course Material>>
+* <<updating_your_repository, Updating your repository>>
+* <<configuring_default_user, Configuring default user>>
+* <<extracting_the_repo_from_a_zip_file, Extracting the repo from a zip file>>
+* <<tl_dr_why_use_github, tl;dr: Why Use GitHub?>>
+* <<ok_but_why_should_i_have_to_use_github, Ok, but why should I have to use GitHub?>>
+
+[[accepting_changes_to_the_course_material]]
+== Accepting Changes to the Course Material
+
+Your instructors may update the course material
+to address typos or other errors. To keep things simple, we'll send
+you the file(s) we want you to change by email. Replace the current file, add and commit the change, and all is good.
+
+[[updating_your_repository]]
+== Updating your repository
+
+**Do not** add new or changed files directly to your GitHub repository.
+Make the changes locally, then push them to your repository. This
+will avoid confusion over which repo is the most current. For our
+purposes, your GitHub repo should never be more current than your
+local one.
+
+When one repository is used by many people, all of whom have local
+copies, it's a delicate job to maintain and distribute changes.
+We're going to avoid this complexity, but it's worth learning how
+a distributed version control system can be used to negotiate a
+variety of changes all at once. This practice starts with creating
+a clear process for keeping all interested users up to date by
+_syncing their forks_.
+
+The process for doing this with GitHub is link:https://help.github.com/articles/syncing-a-fork/[described here].
+
+[[configuring_default_user]]
+== Configuring default user
+
+Before you start pushing changes to your GitHub repository, ensure you have configured git on your laptop with your user details. If you don't do this your contributions in GitHub may appear with the wrong user name. To configure the user details, run the following commands:
+
+* `git config --global user.name "<your name>"`
+* `git config --global user.email "<your email address>"`
+
+[[extracting_the_repo_from_a_zip_file]]
+
+== To clone the repo locally
+
+* right-click the `Clone or download` button to copy your repo's URL.
+* In the `install-bootcamp` directory on your laptop, invoke the following:
+
+** `git config --global user.name "<your name>"`
+** `git config --global user.email "<your email address>"`
+** `git clone your repo's URL`
+
+Your local git repo is now ready to _push_ files to your GitHub
+repo. In the same directory on your laptop, invoke the following:
+
+* `git status`
+* `git add .`
+* `git commit -m "Push course materials for boot camp"`
+* `git push -u origin master`
+
+If this completes successfully, you can browse your GitHub repo to
+see the files have copied to it. If this did not work as expected,
+please consult with an instructor.
+
+As stated in above, *DO NOT* add or change files directly
+on your GitHub repo. Make *ALL* file changes locally and push them.
+This routine will avoid synchronization problems that can occur
+when both copies have been edited in a different way at the same
+time.
+
+[[tl_dr_why_use_github]]
+== tl;dr: Why Use GitHub?
+
+You probably have not used a source-code control system with a training course before. We've incorporated
+`git` and GitHub into this one for a few reasons.
+
+The outcomes we care most about include:
+* Learning to follow existing technical documentation
+* Identifying unfamiliar tools and practices
+* Letting systems fail when they are configured improperly
+* Using mistakes and failures as learning points and teachable moments.
+
+We think PowerPoint slides do not promote hands-on skills development
+and the journalling process we use very well. To track and document
+your progress, and even annotate the course material to your liking,
+we need a system that leaves the teaching content open to change
+and active note-taking.
+
+PowerPoint often force the author to paraphrase or gloss richer
+sources of information to fit one slide.  We would rather link to
+an existing source you can refer to when you need more context or
+information.  There are several benefits:
+
+* The source material remains transparent to the viewer
+* One source can be replaced with a more comprehensive or recent one easily
+* Errors can be traced to the source
+* Errors in interpreting the source are eliminated
+
+In addition, slide formatting is a big cost in traditional course
+development. In a subject area focused on skills development in
+Hadoop -- an ecosystem with dozens of evolving components, all
+moving at different rates of development -- the half-life of that
+knowledge is short. Static course material has not only a potential
+for maintaining an error for a long time. It can also age out quickly
+where the refresh window of content development (say, 6-12 months)
+is a big multiple of a software release schedule (quarterly).
+
+To mitigate these risks, traditional course development will set
+the software release it covers and provide labs written in controlled
+environment. Labs may be vetted to a process that proves the labs
+work under a variety of failure scenarios. A solution set may be
+used both to prove lab integrity and make it possible for anyone
+to 'complete' them.  In the interests of time, the student may be
+guided carefully on what to type or click.
+
+These labs tend to show the software works as described. By design
+they may sidestep showing how the software can be applied to a
+reasonable use case that has not been factored into lab design.
+
+== Ok, but why should I have to use GitHub?
+
+In short, so we can create a dialog for your learning.
+
+Using the mechanism for creating Issues, we then have a common medium for:
+
+* Citing errors or obsolete references in the course material (they do exist!)
+* Documenting your learning process, including failures
+* Notifying collaborators of your progress
+* Continuously updating the course material

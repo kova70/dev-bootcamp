@@ -1,0 +1,77 @@
+= Enablement Tech Basecamp
+
+== CDP Cloud
+
+This repository contains materials for Cloudera's Enablement Tech Basecamp based on the
+CDP cloud tech stack. The basecamp is intended to give new joiners of the field
+technical team the basic tools needed to be self sufficient in deploying
+and use the Cloudera stacks. Further this material is intended to offer a springboard
+for future learning as people progress to specialize into different fields.
+
+=== The basics
+
+The basecamp is intended as a self paced leaning composed of 3 different components:
+
+1. This github repository which offers point form notes on all of the
+topics covered during the course
+1. Hands on Exercises to be performed on an individual basis on a personal cluster
+1. Lecture videos available in Highspot outlining the architectural
+and basic tips and tricks of each component
+
+The basecamp is heavily based on experiential learning, hence the majority of the learning
+will come from the hands on exercises. This course differs from traditional courses in
+several ways:
+
+1. The exercise environment is designed to mimic real production environments where no
+guardrails have been put in to guide the user on the right path.
+1. The exercises somewhat mimic a requirements document and offer little in terms of
+procedural guidance. Links to public documentation will be offer though no tailored instructions
+1. Expect to make mistakes while doing the exercises and having to troubleshoot and debug
+it is an integral part of the learning process
+1. An instructor will be available for questions and to helpd debug in the most dire of
+circumstances though the is no answer sheet, hence successful completion can only be
+achieved to successful debugging.
+
+=== Topics Covered
+
+* CDP Cloud deployment 
+* Data Ingestion
+* Data Engineeing ( ETL )
+* Data Warehouse ( SQL )
+* Streaming Data Storage ( Kafka, HBase, Kudu ) 
+* Streaming Data Processing ( Spark Streaming, Flink )
+* Machine Learning ( CDF )
+
+=== Prerequisites
+
+We've designed this training as a exercises of getting started with the
+Cloudera public cloud stack.
+
+While there are no hard prerequisites, everyone who attends should have:
+
+* An IDE ( possibly intellij ) deployed on their laptop
+* Developed and ran a hello world application in Scala or Python in their IDE
+** Some comfort level in working with AWS
+** Some comfort level in working with Linux
+** Some basic programing skills
+** Basic familiarity with Git.
+
+=== Going though the basecamp
+
+1. Clone this repository into your own git space
+1. Follow the instructions in the link:./GitHub.adoc[GitHub] document
+to setup your git environment
+1. Go through each folder in this repository from 00 -> 07, watch the specified videos
+than do the exercises in the exercises.adoc document.
+
+*NOTE* There is recommended timeline please try to follow that, and finished under the time
+allotted consider doing the bonus exercises for the day. Do not attempt the bonus exercises
+if you are completing the days activities towards the end of the day.
+
+There is a slack channel setup for the entire basecamp, if you have any questions or need
+assistance with the exercises please use the channel.
+
+Than channel is #sales_tech_basecamp
+
+*OK Enough reading, setup your git repo and get to watching short videos and doing the
+hands on exercises*

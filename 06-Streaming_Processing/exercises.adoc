@@ -1,0 +1,24 @@
+=== Exercises 1
+
+Modify the spark steaming job developed developed yesterday to ingest data from Kudu
+rather than HDFS. Leave the rest of the transformations the same.
+
+Use CSVReader for Record Reader when reading the data from Kafka
+Use MergeContent for creating right-sized files on HDFS
+
+Place the new version of the code in the file labs/spark.py or labs/spark.scala
+depending of the programing language you chose
+
+=== Exercises 2
+
+Modify the code from the previous exercise to insert into Kudu rather than an HDFS table.
+
+When inserting the data into kudu use the following schema
+link:http://tiny.cloudera.com/measurements.avsc[ Schema ]
+
+Place the new version of the code in the file labs/spark.py or labs/spark.scala
+depending of the programing language you chose
+
+=== Exercises 3
+
+Use Flink to instantaneously  detect gravitational waves

@@ -1,0 +1,26 @@
+= Streaming Processing
+
+
+
+
+=== Spark Streaming
+
+Stream processing module for Spark
+
+Processes arriving records in micro-batches
+Typically 1 to 10 seconds, though you sould not use time frames that small
+
+image::png/stream_barriers.svg[Straming Batch]
+
+Each micro-batch is an RDD that you can process as if it was a full batch.
+These days you can use structured steaming ( Spark 2.4+ ) and use the Data Frame interface.
+
+If you want to build steaming pipelines without code, and without cost use envelope.
+Careful not supported but works great, built and suppoted by a few PSAs.
+
+http://github.com/cloudera-labs/envelope
+
+=== Flink
+
+dsaa
+

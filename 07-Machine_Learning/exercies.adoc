@@ -2,7 +2,8 @@
 
 ## CDSW Lab Preparation
 
-1. Fork this repository into your own GitHub user space. Either make your repo public, or share it with your instructor.
+1, In your Data Lake deploy a CDS instance with the following profile:
+
 
 2. Log in to CDSW using the URL and credentials provided by your instructor.
 

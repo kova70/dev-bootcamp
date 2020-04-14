@@ -1,0 +1,57 @@
+== Data Ingestion exercises
+
+=== Before You Start
+
+* link:../README.adoc[Follow instructions here] and link:../README_GitHub.adoc[here] if you haven't already
+* Remember to submit text-based work in AsciiDoc and screenshots as PNG files
+** Use code formatting (``...``) at a minimum
+* Create an Issue in your repo called `Installation Lab`
+** Add it to the `Labs` milestone
+** Assign the label `started`
+* Use the issue to note your lab progress
+** Add a comment when you have finished a lab section
+** Add a comment if you run into a puzzling error or other blocker
+** If you also fix it a problem, comment on the cause and solution
+
+=== Exercise 1
+
+Create an Issue called Ingestion labs
+* Add it to the Lab milestone
+* Label the issue as started
+* Assign yourself to the Issue
+
+Develop the commands to ingest measurements and reference data from Oracle into your cluster using Sqoop.
+You can use degree of parallelism 1 for your initial job.
+
+Use the cluster that you have been assigned. Check slack for details of the cluster
+and the Oracle connection string and credentials
+
+The Data: 500 million measurements, 8 detectors, 128 galaxies, 106 astrophysicists
+The Tables: measurements, detectors, galaxies, astrophysicists
+
+Make the tables available to Impala for querying in Hue
+
+Put the sqoop command used in the file labs/sqoop.adoc
+
+=== Exercises 2
+
+Expand the ingestion sqoop command making the following improvements:
+
+1. Increase the degree of parallelism to 6 parallel threads
+1. Write the data into snappy parquet format
+1. Ingest multiple tables in parallel
+
+Place the new sqoop command in the file labs/parallel_sqoop.adoc
+
+=== Exercises 3
+
+Let's make some Hive constructs
+
+1. Create a view simplify the presentation data model Pre-join reference tables
+
+Next write SQL query that create additional tables to speed up the presentation data model
+Materialize the views and also convert DOUBLEs to DECIMALs
+
+Place the create view and create table SQL in the file labs/hive.adoc
+
+Label your Issue review

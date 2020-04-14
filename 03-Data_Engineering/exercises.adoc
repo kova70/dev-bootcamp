@@ -1,0 +1,60 @@
+
+== Data Engineering Exercises
+
+=== Exercise 1
+
+Deploy a Data Engineering Environment.
+
+1. Go into your Data Lake an deploy a new datahub cluster
+1. Choose the Data Engineering Template for this exercise
+
+
+=== Exercise 2
+
+Develop Spark code in your new datahub cluster that performs the following transformations
+
+1. Joins all the tables
+2. saved as Parquet
+3. Correct data types
+4. Adds a flag attribute for gravitational waves
+
+You can develop this code in either Scala or Python.
+
+TIP: When developing Sacala code use the REPL or Zeplin to prototype your code. Don't try to compile
+it every time. You will loose you mind. Once the code works in the REPL create and executable
+and run with spark submit.
+
+For SAs extra challenge do it in both languages.
+
+Place the work source code in the file labs/spark.py or labs/spark.scala depending on which
+language you chose
+
+=== Exercise 3
+
+Next try to do the same tranformations using Hive SQL code. That is write a hive query that
+
+1. Joins all the tables
+2. saved as Parquet
+3. Correct data types
+4. Adds a flag attribute for gravitational waves
+
+
+=== Exercise 4
+
+Use the large table of measurements and compare the performance of the two deployment, spark vs SQL
+
+=== Exercise 5
+
+Let's start by automating the workflow
+
+Write and execute an Oozie workflow that:
+1. runs a hive query to pre-aggregate the same tables
+2. than runs the spark code to transform the data
+
+As a single workflow
+
+Place the oozie workflow file and configuration file in labs/workflow.xml and labs/wf.conf
+respectively
+
+
+
