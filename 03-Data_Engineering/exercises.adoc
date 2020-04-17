@@ -31,6 +31,9 @@ language you chose
 
 === Exercise 3
 
+NOTE: If you have spent more than 4 hours on Exercies 2, go onto the next section, and
+do this exercises as part of the next section's exercises.
+
 Next try to do the same tranformations using Hive SQL code. That is write a hive query that
 
 1. Joins all the tables
@@ -43,7 +46,7 @@ Next try to do the same tranformations using Hive SQL code. That is write a hive
 
 Use the large table of measurements and compare the performance of the two deployment, spark vs SQL
 
-=== Exercise 5
+=== Bonus
 
 Let's start by automating the workflow
 

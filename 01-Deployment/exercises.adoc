@@ -1,6 +1,19 @@
 
 == Deploy a data Lake
 
+=== Before You Start
+
+* link:link:../README_GitHub.adoc[Follow instructions here] if you haven't already
+* Remember to submit text-based work in AsciiDoc and screenshots as PNG files
+** Use code formatting (``...``) at a minimum
+* Create an Issue in your repo called `Installation Lab`
+** Add it to the `Labs` milestone
+** Assign the label `started`
+* Use the issue to note your lab progress
+** Add a comment when you have finished a lab section
+** Add a comment if you run into a puzzling error or other blocker
+** If you also fix it a problem, comment on the cause and solution
+
 === Prerequisite
 
 1. You will need to have an AWS account and admin access. You should have that before you start this course

@@ -22,7 +22,7 @@ In Big Data, ingestion of raw data is recommended as is, as to eliminate the ris
 Once data is in Hadoop it is often transformed for presentation. Raw data can be used for
 infrequent scanning, but should be optimized when working with frequent scans
 
-image::png/etl.png[ETL]
+image::png/flow.png[ETL]
 
 === Ingestion Types
 
@@ -104,7 +104,7 @@ to pull only the new records.
 
 General purpose data integration tool
 
-image::png/nifi.png[ nifi ]
+image::png/nifi_arc.png[ nifi ]
 
 * Works well in our stack for ingesting from upstream systems
 * Pipelines defined with a GUI
@@ -113,3 +113,24 @@ image::png/nifi.png[ nifi ]
 * Primarily used for streams, but can ingest batches too
 * Deployed using Cloudera Manager via separate parcel
 
+Based on link:https://en.wikipedia.org/wiki/Flow-based_programming#Concepts[flow-based programing]
+
+If have never used nifi before go though this getting started guide
+https://nifi.apache.org/docs/nifi-docs/html/getting-started.html#i-started-nifi-now-what
+
+=== Key Nifi Concepts
+
+* FlowFile
+** A FlowFile represents each object moving through the system and for each one, NiFi keeps track of a map of key/value pair attribute strings and its associated content of zero or more bytes.
+
+* FlowFile Processor
+** Processors actually perform the work. it is doing some combination of data routing, transformation, or mediation between systems. Processors have access to attributes of a given FlowFile and its content stream.
+
+* Connection
+** Connections provide the actual linkage between processors. These act as queues and allow various processes to interact at differing rates.
+
+* Flow Controller
+** The Flow Controller maintains the knowledge of how processes connect and manages the threads and allocations thereof which all processes use. The Flow Controller acts as the broker facilitating the exchange of FlowFiles between processors.
+
+* Process Group
+** A Process Group is a specific set of processes and their connections, which can receive data via input ports and send data out via output ports.

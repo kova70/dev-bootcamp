@@ -16,6 +16,9 @@ To view the data steam you can use the `nc` command
 
 === Exercise 1
 
+Deploy a Kafka base DataHub Tempate for a small Kafka cluster
+Deploy a CDP tempalte for Nifi
+
 Use NiFi to create a pipeline where the generated data is inserted into Kafka
 
 You want to make sure the data is unchanged in the process.
@@ -24,8 +27,15 @@ Take a screenshot of relevant part of your canvas and put into labs/nifi.png
 
 === Exercises 2
 
+Deploy Operational Database databub
+
 Use NiFi to create a pipeline where the generated non measuremnets data into HBase
 
 You want to make sure the data is unchanged in the process.
 
 Take a screenshot of relevant part of your canvas and put into labs/nifi.png
+
+=== Exercise 3
+
+Destroy the deployment of Nifi datahub
+If you don't do this you fail!!!

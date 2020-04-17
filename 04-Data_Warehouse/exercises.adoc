@@ -1,18 +1,38 @@
 
+== Let's do some data warehouse
 
 
-== Exercise 1
+=== Exercise 1
 
-Activate a data warehouse
+Activate a new virtual warehouse in your datalake
 
 https://docs.cloudera.com/data-warehouse/cloud/managing-environments/topics/dw-activating-environments-4-data-catalogs.html
 
+=== Exercise 2
 
-== Exercise 2
+Create a new hive cluster data warehouse instance, try the queries that detect
+gravitational wave.
 
-Run the Hive queries developed in the previous section with Impala using hue
+Destroy the Hive cluster and create a Impala cluster run the same queries.
 
-== Exercise 3
+What one is faster.
 
-Develop new queries that uses the data engineered table to find gravitational wave
+Use hue to make your life easier
+
+=== Exercises 3
+
+Now that you figured out the gavitational wave from scratch, how much faster is
+a select query from the joined tables created by spark.
+
+Create a query to find out
+
+=== Exercise 4
+
+Destroy the data warehouse cluster. Create a table that is hive managed table.
+Modify your spark code to use warehouse connector.
+
+Test the performance difference.
+
+
+
 

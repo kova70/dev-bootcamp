@@ -64,7 +64,7 @@ to setup your git environment
 1. Go through each folder in this repository from 00 -> 07, watch the specified videos
 than do the exercises in the exercises.adoc document.
 
-*NOTE* There is recommended timeline please try to follow that, and finished under the time
+*NOTE* There is recommended timeline please try to follow that, and if you are finished under the time
 allotted consider doing the bonus exercises for the day. Do not attempt the bonus exercises
 if you are completing the days activities towards the end of the day.
 
