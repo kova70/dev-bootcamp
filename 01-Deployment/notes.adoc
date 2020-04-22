@@ -6,7 +6,7 @@
 * Besides a bunch of Open Source projects with funny link:https://docs.cloudera.com/runtime/7.0.3/release-notes/topics/rt-runtime-component-versions.html[zoo animal names]. +
 Leave that to the link:https://zookeeper.apache.org/[Zookeeper].
 
-Bsaically we have:
+Basically we have:
 
 * All zoo animals as part of Cloudera runtime
 * Package Cloudera runtime as parcel of Data center deployment
