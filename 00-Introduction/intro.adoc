@@ -3,10 +3,10 @@
 
 === Overview
 
-This boot camp is a hands-on training session designed new hire members of the consulting
+This boot camp is a hands-on training session designed for newly hired members of the consulting
 and pre-sales organizations.
 
-We focus on the common elements of a professional services engagement
+We focus on these common elements of a customer usage:
 
 1. data ingestion
 1. data engineering
@@ -14,45 +14,44 @@ We focus on the common elements of a professional services engagement
 1. data steaming
 1. data science
 
-So you basically the is a data basecamp
+So this is basically a data basecamp
 
 We are going to:
 
-* Expanding out a single use case solution over the week.
-* Simulating a customer engagement with real problem solving
+* Expanding out a single use case solution over the week. +
+Simulating a customer engagement with real problem solving.
 
 === Prerequisites
 
-We've designed this training as a exercises of getting started with the
-Cloudera public cloud stack.
+We've designed this training as an exercises of getting started with the Cloudera public cloud stack.
 
 While there are no hard prerequisites, everyone who attends should have:
 
-* An IDE ( possibly intellij ) deployed on their laptop
+* An IDE (intellij, etc.) deployed on their laptop
 * Developed and ran a hello world application in Scala or Python in their IDE
-** Some comfort level in working with AWS
-** Some comfort level in working with Linux
-** Some basic programing skills
-** Basic familiarity with Git.
+* Some comfort level with the following:
+** working with AWS
+** working with Linux
+** basic programing skills
+** familiarity with Git
 
 
 == Course Objectives
 
 * Give you a scenic tour of the products that comprise Cloudera's stack
-* Give you the language needed to speak to speak confidently to practitioners
+* Give you the language needed to speak confidently to practitioners
 * Give you the sympathy needed to understand customer pains with our stack
-* Ensure everybody has a grasp on the basic building blocks for development using the Cloudera
-product set, for testing functionality to answer questions or deploy at the customer
+* Ensure everybody has a basic understanding fo the building blocks of Cloudera for development, testing, deploying, and answering questions.
 
 
 == Expected From You!
 
-* If you find something very easy, help someone else figure it out via slack or zoom
-* Try to solve blockers before you reach out struggle for at least 10 minutes, google is a friend
+* If you find something very easy, help someone else figure it out!!
+* Try to solve blockers before you reach out struggle for at least 10 minutes, google is a friend.
 * Also don’t get bogged down with an error for too long, if you are stuck with something for 30 minutes
-get somebody to help you. There is a lot of content to get though, you want want to get through it all
+get somebody to help you. There is a lot of content to get though, you need to get through it all
 * Capture information about what you achieved, what worked well, what was challenging, and metrics such as performance
-* Have great notes in git that you can reuse in the future
+* In the end you will have great notes that you can use in the future
 
 == Suggested course timeline
 
@@ -78,8 +77,8 @@ get somebody to help you. There is a lot of content to get though, you want want
 == Submitting Work
 
 * All work is submitted to your GitHub repo
-** Add your instructor `alexciobanu`  as Collaborators
-** We'll review git/GitHub tools in class
+** Add your instructor `alexciobanu`  as a Collaborator
+** We will review git/GitHub tools in class
 ** Use AsciiDoc for text and PNG format for screenshots
 * We score each lab/challenge as `Complete`, `Incomplete`, or `Did Not Submit`
 * The final evaluation is `Pass`, `Provisional Pass`, or `No Pass`
@@ -99,9 +98,9 @@ Your mission should you choose to accept it:
 
 You should:
 
-* Make it easy to query for finding the gravitational waves
+* Make it easy to query for gravitational waves
 * Make the queries run fast
-* Minimize the time for measurements to be available after they are made
+* Minimize the latency for measurements from collection to availability
 * Minimize the effort involved in loading new measurements
 
 ==== Data Model
@@ -109,6 +108,7 @@ You should:
 One record is one measurement:
 
 Each measurement is:
+
 * At a point in time
 * Made up of three signal amplitudes
 * From a gravitational wave detector somewhere in the world
