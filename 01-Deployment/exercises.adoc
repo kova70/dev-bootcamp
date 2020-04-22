@@ -6,7 +6,7 @@
 * link:link:../README_GitHub.adoc[Follow instructions here] if you haven't already
 * Remember to submit text-based work in AsciiDoc and screenshots as PNG files
 ** Use code formatting (``...``) at a minimum
-* Create an Issue in your repo called `Installation Lab`
+* Create an Issue in your repo called `Deployment Lab`
 ** Add it to the `Labs` milestone
 ** Assign the label `started`
 * Use the issue to note your lab progress
@@ -18,20 +18,23 @@
 
 1. You will need to have an AWS account and admin access. You should have that before you start this course
 1. You need to have a CDP tenant. Look for an OKTA tile with the basecamp logo.
+// that is the basecamp logo?
 
 === Prepare S3
 
 1. Login to AWS console ( pick your favorite region, and don't change it for the rest of the week, trust me .. )
 
-1. Create the S3 Bucket for the data and logs named with your personal `github_id`. If the name is taken add a numerical suffix
+1. Create the S3 Bucket for the data and logs named with your personal `github_id`. +
+If the name is taken add a numerical suffix
 
-1. In the S3 bucket create a data folder and a logs folder
+1. In the S3 bucket create the following folders
 .. <github_id>/log/
 .. <github_id>/data/
 
-=== Create AMI policies
+=== Create IAM policies
 
-1. Create the 6 needed AIM policies. Each name is a link to the sample policy json. *WARNING: All of the jsons have replace variables, don't just copy and paste*
+1. Create the 6 needed IAM policies. Each name is a link to the sample policy json. +
+*WARNING: All of the jsons have replace variables, don't just copy and paste*
 .. link:resources/idbroker-assume-role-policy.json[<github_id>-idbroker-assume-role-policy]
 .. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-log-policy.json[<github_id>-log-policy-s3access]
 .. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-ranger-audit-s3-policy.json[<github_id>-ranger-audit-policy-s3access]
@@ -39,7 +42,7 @@
 .. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-bucket-access-policy.json[<github_id>-bucket-policy-s3access]
 .. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-dynamodb-policy.json[<github_id>-dynamodb-policy]
 
-=== Create AMI roles
+=== Create IAM roles
 
 1. Now that we have policies of access let's create roles which will use these policies. There are 4 roles to create
 with the specified permissions ( Permissions / policy(s) needed for each role are indented in the followed lines  )
@@ -65,7 +68,7 @@ with the specified permissions ( Permissions / policy(s) needed for each role ar
 * <github_id>-ranger-audit-policy-s3access
 * <github_id>-dynamodb-policy
 
-=== AMI Role Trusts
+=== IAM Role Trusts
 
 1. OK, roles not done yet. Some of the roles need trust relationships .. yeah I know, it will be over soon ...
 Setup the following trust relationships:

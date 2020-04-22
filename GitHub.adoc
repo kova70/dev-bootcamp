@@ -23,11 +23,11 @@ stands as a record of that interaction.
 * We use GitHub's _Issues_ feature to establish a workflow around your
 lab submissions.
 +
-For each lab section, such as Installation or Storage, you will use
+For each lab section, such as Deployment or Data Ingestion, you will use
 an _Issue_ to track your progress. You will also use GitHub _Labels_
 to mark the current state of each lab (e.g., `submitted`, `stuck`,
 `review`). Your instructors will use labels to evaluate your work
-once you have marked it for review (such as `complete` or 'incomplete`).
+once you have marked it for review (such as `complete` or `incomplete`).
 +
 In a large class, it may take some time for an instructor to help you with a difficult problem.
 Use the Issue to describe the problem and show what diagnostic work you've tried to isolate your problem.
