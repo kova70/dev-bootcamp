@@ -3,7 +3,8 @@
 
 === What is CDP
 
-* Get away from the link:https://docs.cloudera.com/runtime/7.0.3/release-notes/topics/rt-runtime-component-versions.html[zoo animals], too granular and confusing
+* Besides a bunch of Open Source projects with funny link:https://docs.cloudera.com/runtime/7.0.3/release-notes/topics/rt-runtime-component-versions.html[zoo animal names]. +
+Leave that to the link:https://zookeeper.apache.org/[Zookeeper].
 
 Bsaically we have:
 
@@ -15,7 +16,7 @@ Bsaically we have:
 ** Deployed in OpenShift for open prem ( called private cloud )
 ** Deployed as on EKS, AKS on cloud
 * If there isn't an exerience to your linking
-** Cloud has DataHub with is VM based deployment of components based on template
+** Cloud has DataHub with a VM based deployment of components based on template
 
 
 image::png/cdp.png[Cloud Setup]
