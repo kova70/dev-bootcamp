@@ -27,6 +27,15 @@
 1. Create the S3 Bucket for the data and logs named with your personal `github_id`. +
 If the name is taken add a numerical suffix
 
+1. Familiarize yourself with the link:https://cloudera.atlassian.net/wiki/spaces/SE/pages/90014288/Cloud+Tagging+Requirements+Data+Retention+Policy[AWS Tagging Requirements and Data Retention Policies] +
+Please tag everything you create in AWS with the following:
+* enddate : MMDDYYYY
+** IE: enddate:04242020
+* owner : okta/${email username}
+** IE: owner : okta/jrobinson
+* project : basecamp/${startdate}
+** IE: basecamp/04202020
+
 1. In the S3 bucket create the following folders
 .. <github_id>/log/
 .. <github_id>/data/
