@@ -81,7 +81,7 @@ General view of what needs to be done
 
 image::png/cdp_cloud_env_build.png[Cloud Setup]
 
-Useful Resouces:
+Useful Resources:
 
 link:https://docs.google.com/document/d/1BTTrZ7NijD-xCrlg1YYfHBDjN3KYLEKku3b3sOZ5En4/edit#[CDP Deployment Cheat Sheet Doc]
 
