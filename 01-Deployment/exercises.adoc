@@ -20,7 +20,7 @@
 1. You need to have a CDP tenant. Look for an OKTA tile with the basecamp logo.
 1. Familiarize yourself with the link:https://cloudera.atlassian.net/wiki/spaces/SE/pages/90014288/Cloud+Tagging+Requirements+Data+Retention+Policy[AWS Tagging Requirements and Data Retention Policies] +
 
-**Please tag everything you create in AWS with the following:**
+**Please tag _everything_ you create in AWS with the following:**
 |===
 |Key |Value
 
