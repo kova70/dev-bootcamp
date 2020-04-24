@@ -13,8 +13,7 @@ Deploy a data hub cluster with a flow manager template
 
 === Exercise 2
 
-There are 5 different sources fro you data. Here is where you can find the data
-for this project
+The data for this project are in the following 5 locations:
 
 Source Type, Table, Source URL
 
