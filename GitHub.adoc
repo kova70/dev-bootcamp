@@ -23,11 +23,11 @@ stands as a record of that interaction.
 * We use GitHub's _Issues_ feature to establish a workflow around your
 lab submissions.
 +
-For each lab section, such as Installation or Storage, you will use
+For each lab section, such as Deployment or Data Ingestion, you will use
 an _Issue_ to track your progress. You will also use GitHub _Labels_
 to mark the current state of each lab (e.g., `submitted`, `stuck`,
 `review`). Your instructors will use labels to evaluate your work
-once you have marked it for review (such as `complete` or 'incomplete`).
+once you have marked it for review (such as `complete` or `incomplete`).
 +
 In a large class, it may take some time for an instructor to help you with a difficult problem.
 Use the Issue to describe the problem and show what diagnostic work you've tried to isolate your problem.
@@ -44,20 +44,21 @@ from your challenge work.
 Before you start any labs, make the following changes to your GitHub
 repo:
 
-* Add collaborators under `Settings -> Collaborators`.
-* Enable `Issues` under `Settings -> Options`. Click the `Features` box and enable `Issues`.
-* Click the `Issues` tab and the `Milestones` button
-** Create two milestones: `Labs` and `Challenges`
-** Set the deadlines for Thursday and Friday.
+* Enable `Issues` in your repo and add your instructor as a collaborator
+** Open the `Settings` tab, under the `Features` section enable `Issues`
+** Add your instructor under `Settings -> Collaborators`
+* Click the `Issues` tab then the `Milestones` button
+** Create two milestones: `Labs, due Thursday` and `Challenges due Friday`
 * Click the `Labels` button and change your labels as follows:
 ** Change `bug` to `stuck`
 ** Change `duplicate` to `started`
 ** Change `enhancement` to `didNotSubmit`
 ** Change `help wanted` to `complete`
 ** Change `invalid` to `review`
-** Add the label `WorkInProgress` and make it purple.
-** Change `wontfix` to `incomplete`; set the label color to `#fbca04`.
+** Change `wontfix` to `incomplete`; set the label color to `#fbca04`
 ** Leave the `question` Issue as it is
+** Add the label `WorkInProgress`; set the label color to `#7a3bba`
+//I don't feel that this is very valuable. Can it be presetup in the original repo so that it is preconfigured when forked?
 
 One of the instructors will open an issue on your repo to acknowledge
 your invitation to collaborate. They will also review your repo for
@@ -187,6 +188,7 @@ These labs tend to show the software works as described. By design
 they may sidestep showing how the software can be applied to a
 reasonable use case that has not been factored into lab design.
 
+[[ok_but_why_should_i_have_to_use_github]]
 == Ok, but why should I have to use GitHub?
 
 In short, so we can create a dialog for your learning.
