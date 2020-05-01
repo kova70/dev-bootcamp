@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 
 from pyspark.sql import SparkSession
+from pyspark_llap.sql.session import HiveWarehouseSession
 import logging
 import sys
 
 __author__ = "Alex Ciobanu"
 __copyright__ = "Copyright 2019, Cloudera"
-__credits__ = ["Alex ciobanu"]
+__credits__ = ["Alex ciobanu","Anni Du"]
 __license__ = "commercial"
 __version__ = "1.0"
 __maintainer__ = "Everybody"
-__email__ = "alex.ciobanu@cloudera.com"
+__email__ = "alex.ciobanu@cloudera.com, adu@cloudera.com"
 __status__ = "Development"
 
 '''
@@ -40,6 +41,8 @@ None
 
 
 def main():
+    # Create hive warehouse connector to connect to hive managed table
+    hive = HiveWarehouseSession.session(spark).build()
     # Build the sparkSession and set application name from config file
     spark = SparkSession.builder.appName("Example").getOrCreate()
     # Setting LogLevel for the sparkContext from config file
@@ -50,8 +53,8 @@ def main():
     # Pull the data into dataframes
     query1 = f"select * from {table1_name}"
     query2 = f"select * from {table2_name}"
-    t1_buff = spark.sql(query1)
-    t2_buff = spark.sql(query2)
+    t1_buff = hive.sql(query1)
+    t2_buff = hive.sql(query2)
     # Create alias for the tables so they can be used in joins    
     t1 = t1_buff.alias('t1')
     t2 = t2_buff.alias('t2')

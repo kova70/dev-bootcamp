@@ -1,0 +1,8 @@
+.. ${LOGS_BUCKET} : <github-id-log>
+.. ${LOGS_LOCATION_BASE} : <github-id-log>/log
+.. ${STORAGE_LOCATION_BASE} : <github-id-data>/data
+.. ${DATALAKE_BUCKET} : <github-id-data>
+.. ${DYNAMODB_TABLE_NAME} : Any name you want to give to this table, this name will be used in later step to register CDP environment
+.. ${AWS_ACCOUNT_ID} : the account id of your AWS account
+.. ${IDBROKER_ROLE} : <github-id>-idbroker-role
+.. ${DATAENG-STORAGE-BASE} : <github-id-data>/data/dataeng
