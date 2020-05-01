@@ -6,12 +6,40 @@
 Deploy a Data Engineering Environment.
 
 1. Go into your Data Lake an deploy a new datahub cluster
-1. Choose the Data Engineering Template for this exercise
+* Click the “Create Datahub Cluster” button.
+* Select “Data engineering” cluster template, pick a name and add tag. Then click “Provision cluster” button.
+
+1. Update access roles and Set your password
+* Navigate to your newly created environment under Environments. Click Actions > Manage Access.
+* Add your admin group created in exercise of 01-deployment e.g. cdp_<github-id> and give it following roles: DWAdmin, EnviornmentAdmin, MLAdmin
+* Add ww_users group and give it following roles: DWUser, EnviornmentUser, MLUser
+* Add cdp_sandbox_workers_ww  group and give it following roles: DWUser, EnviornmentUser, MLUser
+* Reset your FreeIPA password which will be the password to SSH to the hosts.
+** Navigate to Workload Password tab, change your password there. (Note : You will need to use upper/lower/numeric/special character combination)
+* Go back to environment page. Click Actions > Synchronize Users to FreeIPA (to sync users from CDP to your environment)
+* Set idbroker mapping to map your id to AWS role.
+** Click Actions > Manage Access > IDBroker Mappings.
+** Under Current Mappings, click edit, add dataeng role and data sci role to your group
+*** group: cdp_<github-id> role: the ARN of <github-id>-dataeng-role
+** Click save and sync
+
+1. Verify the created DataHub
+* Go back to your environment page and open Ranger UI. Confirm that you have admin access in Ranger (e.g. you can see the "Audit tab")
+* Similarly, open CM and confirm you have admin access (e.g. you can restart/configure services)
+* Connect to the nodes in your environment via SSH.
+** Navigate to your datalake or datahub and click the "Hardware" tab and find the Public IP, pick up the one for master node
+** Then SSH in using below command (using your FreeIPA password):
+*** ssh <userid>@<IP address>
+** Verify you are able to access dataeng subfolder of your S3 bucket
+*** hdfs dfs -ls s3a://${DATAENG-STORAGE-BASE}
+
+
+
 
 
 === Exercise 2
 
-Develop Spark code in your new datahub cluster that performs the following transformations
+Develop Spark code in your new datahub cluster that performs the following transformations. link:https://community.cloudera.com/t5/Community-Articles/Integrating-Apache-Hive-with-Apache-Spark-Hive-Warehouse/ta-p/249035[here] is a good instruction of hive warehouse connector
 
 1. Joins all the tables
 2. saved as Parquet
@@ -58,6 +86,3 @@ As a single workflow
 
 Place the oozie workflow file and configuration file in labs/workflow.xml and labs/wf.conf
 respectively
-
-
-
