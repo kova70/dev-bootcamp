@@ -17,7 +17,7 @@
 === Prerequisite
 
 1. You will need to have an AWS account and admin access. You should have that before you start this course
-1. You need to have a CDP tenant. Look for an OKTA tile with the basecamp logo.
+1. You need to have a CDP tenant. Look for an OKTA tile with the cdp sandbox logo.
 1. Familiarize yourself with the link:https://cloudera.atlassian.net/wiki/spaces/SE/pages/90014288/Cloud+Tagging+Requirements+Data+Retention+Policy[AWS Tagging Requirements and Data Retention Policies] +
 
 **Please tag _everything_ you create in AWS with the following:**
@@ -25,7 +25,7 @@
 |Key |Value
 
 |enddate
-|MMDDYYY
+|MMDDYYYY
 
 |owner
 |okta/${email username}
@@ -48,83 +48,193 @@ link:https://docs.cloudera.com/management-console/cloud/environments/topics/mc-e
 
 1. Login to AWS console ( pick your favorite region, and don't change it for the rest of the week, trust me .. )
 
-1. Create the S3 Bucket for the data and logs named with your personal `github_id`. +
+1. link:https://docs.aws.amazon.com/quickstarts/latest/s3backup/step-1-create-bucket.html[Create the S3 Bucket] for the data and logs named with your personal `github-id`. +
 If the name is taken add a numerical suffix
 
 1. In the S3 bucket create the following folders
-.. <github_id>/log/
-.. <github_id>/data/
+
+.. Log folder : <github-id>/log/
+.. Data folder : <github-id>/data/
+
+=== Setup AWS IAM 
+*WARNING: All of the jsons have replace variables, don't just copy and paste*
+
+Below are variables need to be replaced by your own S3 Bucket path in json files. Make a link:resources/variables.adoc[variable file] of your own environment to make your life easier.
+
+.. ${LOGS_BUCKET} : <github-id>
+.. ${LOGS_LOCATION_BASE} : <github-id>/log
+.. ${STORAGE_LOCATION_BASE} : <github-id>/data
+.. ${DATALAKE_BUCKET} : <github-id>
+.. ${DYNAMODB_TABLE_NAME} : <github-id>
+.. ${AWS_ACCOUNT_ID} : the account id of your AWS account
+.. ${IDBROKER_ROLE} : <github-id>-idbroker-role
 
 === Create IAM policies
 
-1. Create the 6 needed IAM policies. Each name is a link to the sample policy json. +
-*WARNING: All of the jsons have replace variables, don't just copy and paste*
-.. link:resources/idbroker-assume-role-policy.json[<github_id>-idbroker-assume-role-policy]
-.. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-log-policy.json[<github_id>-log-policy-s3access]
-.. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-ranger-audit-s3-policy.json[<github_id>-ranger-audit-policy-s3access]
-.. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-datalake-admin-s3-policy.json[<github_id>-datalake-admin-policy-s3access]
-.. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-bucket-access-policy.json[<github_id>-bucket-policy-s3access]
-.. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-dynamodb-policy.json[<github_id>-dynamodb-policy]
+link:https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html#access_policies_create-json-editor[Create the 6 needed IAM policies]. Each name is a link to the sample policy json. +
+
+1. link:resources/idbroker-assume-role-policy.json[<github-id>-idbroker-assume-role-policy]
+1. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-log-policy.json[<github-id>-log-policy-s3access]
+1. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-ranger-audit-s3-policy.json[<github-id>-ranger-audit-policy-s3access]
+1. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-datalake-admin-s3-policy.json[<github-id>-datalake-admin-policy-s3access]
+1. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-bucket-access-policy.json[<github-id>-bucket-policy-s3access]
+1. link:https://github.com/hortonworks/cloudbreak/blob/master/cloud-aws/src/main/resources/definitions/cdp/aws-cdp-dynamodb-policy.json[<github-id>-dynamodb-policy]
 
 === Create IAM roles
 
-1. Now that we have access policies let's create roles which will use these policies. There are 4 roles to create
+Now that we have access policies let's create roles which will use these policies. There are 4 roles to create
 with the specified permissions ( Permissions / policy(s) needed for each role are indented in the followed lines  )
 
-.. Type of trusted entity: Ec2
+1. <github-id>-idbroker-role
+.. link:https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html[Type of trusted entity]: Ec2
+.. Policies:
+* <github-id>-idbroker-assume-role-policy
 
-... <github_id>-idbroker-role
-* <github_id>-idbroker-assume-role-policy
+1. <github-id>-log-role
+.. link:https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html[Type of trusted entity]: Ec2
+.. Policies:
+* <github-id>-log-policy-s3access
+* <github-id>-bucket-policy-s3access
 
-... <github_id>-log-role
-* <github_id>-log-policy-s3access
-* <github_id>-bucket-policy-s3access
+1. <github-id>-datalake-admin-role
+.. link:https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html[Type of trusted entity]: another AWS Account
+.. Account:  ${AWS_ACCOUNT_ID}
+.. Policies:
+* <github-id>-bucket-policy-s3access
+* <github-id>-dynamodb-policy
+* <github-id>-datalake-admin-policy-s3access
 
-.. Type of trusted entity: another AWS > Your AWS account ID
-
-... <github_id>-datalake-admin-role
-* <github_id>-bucket-policy-s3access
-* <github_id>-dynamodb-policy
-* <github_id>-datalake-admin-policy-s3access
-
-... <github_id>-ranger-audit-role
-* <github_id>-bucket-policy-s3access
-* <github_id>-ranger-audit-policy-s3access
-* <github_id>-dynamodb-policy
+1. <github-id>-ranger-audit-role
+.. link:https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html[Type of trusted entity]: another AWS account
+.. Account:  ${AWS_ACCOUNT_ID}
+.. Policies:
+* <github-id>-bucket-policy-s3access
+* <github-id>-ranger-audit-policy-s3access
+* <github-id>-dynamodb-policy
 
 === IAM Role Trusts
 
 1. OK, roles not done yet. Some of the roles need trust relationships .. yeah I know, it will be over soon ...
 Setup the following trust relationships:
 
-.. sme-datalake-admin-role
+.. <github-id>-datalake-admin-role -> Trust Relationships
 * link:resources/aws-cdp-idbroker-role-trust-policy.json[idbroker-role-trust-policy]
-.. sme-ranger-audit-role
+.. <github-id>-ranger-audit-role -> Trust Relationships
 * link:resources/aws-cdp-idbroker-role-trust-policy.json[idbroker-role-trust-policy]
 
-=== Cross account setup
+=== Cross account permission setup
 
-1. We can create the cross account AIM role. This will be used by Control plane to enter your account
-and deploy the different VMs and K8s instances. Follow the instructions link:https://docs.cloudera.com/management-console/cloud/credentials-aws/topics/mc-create-credentialrole.html[in the documentation]
+We can create the cross account AIM role. This will be used by Control plane to enter your account
+and deploy the different VMs and K8s instances.
 
-1. The final step is to create is to role-based credential, basically given your little world of control plane,
-where your environments will be created the credentials to access your AWS account. Follow the
-instructions link:https://docs.cloudera.com/management-console/cloud/credentials-aws/topics/mc-create-role-based-credential.html[in the documentation]
+* Follow the instructions link:https://docs.cloudera.com/management-console/cloud/credentials-aws/topics/mc-create-credentialrole.html[in the documentation]
 
-1. You are now ready to deploy CDP environment. *Name the environment your github id* Follow the instructions link:https://docs.cloudera.com/management-console/cloud/environments/topics/mc-environment-register-aws-ui.html[in the documentation].
+* You can name the newly created role and policy whatevery you would like though use the <github-id> prefix to easly identify it
+and reduce the chance of name collision.
 
-1. Now it's time for a break, it will take at least 45 minutes to fail if you got on of the pre-requests wrong, or 60 minutes to deploy everything successfully.
+* Don't forget to get the IAM Role ARN you are going to need it in the next step
+
+
+The final step is to create is to role-based credential, basically given your little world of control plane,
+access to your AWS account. It is though this access Control Plane can auto create ec2 for datalakes and datahubs and some k8s for experiences.
+
+* Follow the instructions link:https://docs.cloudera.com/management-console/cloud/credentials-aws/topics/mc-create-role-based-credential.html[in the documentation]
+* Name the Credential: <github-id>-aws-credentials
+
+=== Setup a ssh key pair
+
+In AWS you need to setup an SSH key pair, which you will give to Control Plan. All
+ec2 instances that will be created will use this key pair, so you can ssh into the nodes
+after they are auto created.
+
+In the AWS Console:
+
+1. Make sure the region is still correct ( changing regions will hurt you )
+2. Go to EC2 -> Key Pairs -> Create Key Pair
+3. name the Key <github-id>-basecamp-keypair
+4. Click Create Key Pair
+5. Save the pem file in a safe location for use to ssh into your nodes
+
+
+=== Deploy your CDP Environment and Lake
+
+1. You are now ready to deploy CDP environment. *Name the environment <github-id>*
+
+Follow the instructions link:https://docs.cloudera.com/management-console/cloud/environments/topics/mc-environment-register-aws-ui.html[in the documentation],
+or you can follow the steps below, both paths should take you to the same place.
+
+.. Navigate to the Management Console > Environments > Register environment
+.. On the Register Environment page, provide the following information
+* env name: <github-id>
+* credential: <github-id>-aws-credentials
+* datalake name: <github-id>
+* Data Lake version: 7.1.0
+* region: Must be in same region as your S3 bucket
+* network: select create new network 10.10.0.0/16
+* security access setting: select create new security groups 0.0.0.0/0
+* ssh Setting: <github-id>-basecamp-keypair
+
+* Log storage and Audits
+** Select an Instance Profile : <github-id>-log-role
+** Logs Location Base : <github-id>/log
+** Ranger Audit Role : <github-id>-ranger-audit-role
+* Data access
+** Select an Instance Profile : <github-id>-idbroker-role
+** Storage Location Base : <github-id>/data
+** Data Access Role : <github-id>-datalake-admin-role
+* Add Tags
+** enddate : 05092020
+** owner : okta/<okta_ID>
+** project : basecamp
+* Enable S3Guard : ${DYNAMODB_TABLE_NAME}
+* Click Register Environment
+
+Now it's time for a break, it will take at least 45 minutes to fail if you got on of the pre-requests wrong, or 60 minutes to deploy everything successfully.
+
+If it' succeeded congratulations, if it failed, well you need to fix it. See the logs and what you got worng anf fix it!
+
+Do not continue until you have a working datalake
 
 === Deploy a new bucket for Data
 
-create S3 bucket for Customer Data
+Create S3 bucket for Customer Data
 
-=== Create the data engineer and data scientist data access role
+* Create a bucket S3 called <github-id>-data
+* Create a folder in the bucket called <github-id>-data/gravity
 
-1. Create AMI policies
 
-1. Crate AMI roles
+=== Create entities needed for data access
 
-1. Crate AMI trust
+Now that we have a datalake, it would be great to get some data. We are going to
+put all of our data in a different bucket, but arbitrary of where we put our day
+we will still need to set thing up in AWS and CDP for us to be able to get access
+to data from within our CDP environment
+
+1. Create following AMI policies
+( same as you did above, don't forget to replace variables as needed )
+.. link:resources/gravity-policy.json[<github-id>-gravity-policy]
+
+1. Crate AMI roles using that policy
+
+.  <github-id>-gravity-role
+.. link:https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html[Type of trusted entity]: another AWS Account
+.. Account:  ${AWS_ACCOUNT_ID}
+.. Policies:
+* <github-id>-gravity-policy
+* <github-id>-dynamodb-policy
+
+1. Create AMI role trust
+
+.. <github-id>-gravity-role → Trust Relationships
+... <github-id>-gravity-role
+*  link:resources/aws-cdp-idbroker-role-trust-policy.json[idbroker-role-trust-policy]
+
+1. Create Admin group in CDP
+.. In CDP, navigate to: Management console > User Management > Groups > Create Group
+.. Create group with:
+* name: cdp_<github-id> ( don't get creative with the name ... )
+* Make sure to uncheck "Sync Membership"
+* Add yourself to that group
+* Click Actions > Update groups > uncheck "sync membership"
 
 1. Test the setup
