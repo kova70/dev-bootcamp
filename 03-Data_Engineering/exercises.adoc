@@ -1,56 +1,42 @@
 
 == Data Engineering Exercises
 
+=== Prepare Exercise
+
+Create an Issue called `Data Engineering labs`
+
+* Add it to the Lab milestone
+* Label the issue as started
+* Assign yourself to the Issue
+
 === Exercise 1
 
 Deploy a Data Engineering Environment.
 
-1. Go into your Data Lake an deploy a new datahub cluster
-* Click the “Create Datahub Cluster” button.
-* Select “Data engineering” cluster template, pick a name and add tag. Then click “Provision cluster” button.
-
-1. Update access roles and Set your password
-* Navigate to your newly created environment under Environments. Click Actions > Manage Access.
-* Add your admin group created in exercise of 01-deployment e.g. cdp_<github-id> and give it following roles: DWAdmin, EnviornmentAdmin, MLAdmin
-* Add ww_users group and give it following roles: DWUser, EnviornmentUser, MLUser
-* Add cdp_sandbox_workers_ww  group and give it following roles: DWUser, EnviornmentUser, MLUser
-* Reset your FreeIPA password which will be the password to SSH to the hosts.
-** Navigate to Workload Password tab, change your password there. (Note : You will need to use upper/lower/numeric/special character combination)
-* Go back to environment page. Click Actions > Synchronize Users to FreeIPA (to sync users from CDP to your environment)
-* Set idbroker mapping to map your id to AWS role.
-** Click Actions > Manage Access > IDBroker Mappings.
-** Under Current Mappings, click edit, add dataeng role and data sci role to your group
-*** group: cdp_<github-id> role: the ARN of <github-id>-dataeng-role
-** Click save and sync
-
-1. Verify the created DataHub
-* Go back to your environment page and open Ranger UI. Confirm that you have admin access in Ranger (e.g. you can see the "Audit tab")
-* Similarly, open CM and confirm you have admin access (e.g. you can restart/configure services)
-* Connect to the nodes in your environment via SSH.
-** Navigate to your datalake or datahub and click the "Hardware" tab and find the Public IP, pick up the one for master node
-** Then SSH in using below command (using your FreeIPA password):
-*** ssh <userid>@<IP address>
-** Verify you are able to access dataeng subfolder of your S3 bucket
-*** hdfs dfs -ls s3a://${DATAENG-STORAGE-BASE}
-
-
-
-
+* click `Data Hub Clusters`
+* click `Create Data Hub`
+* Select your Environment
+* under `Cluster Template` select `Data Engineering`
+* give your cluster a name like : `${github_id}-de`
+* add the appropriate tags:
 
 === Exercise 2
 
-Develop Spark code in your new datahub cluster that performs the following transformations. link:https://community.cloudera.com/t5/Community-Articles/Integrating-Apache-Hive-with-Apache-Spark-Hive-Warehouse/ta-p/249035[here] is a good instruction of hive warehouse connector
+Develop Spark code in your new datahub cluster that performs the following transformations.
 
 1. Joins all the tables
-2. saved as Parquet
 3. Correct data types
 4. Adds a flag attribute for gravitational waves
+
+To access hive from Spark you will need to use the link:https://community.cloudera.com/t5/Community-Articles/Integrating-Apache-Hive-with-Apache-Spark-Hive-Warehouse/ta-p/249035[Warehouse Connector] follow the link for some guidance
 
 You can develop this code in either Scala or Python.
 
 TIP: When developing Sacala code use the REPL or Zeplin to prototype your code. Don't try to compile
 it every time. You will loose you mind. Once the code works in the REPL create and executable
 and run with spark submit.
+
+There is some sample python and scala code in the resources section. I recommend using those for sample code
 
 For SAs extra challenge do it in both languages.
 
@@ -59,30 +45,24 @@ language you chose
 
 === Exercise 3
 
-NOTE: If you have spent more than 4 hours on Exercies 2, go onto the next section, and
-do this exercises as part of the next section's exercises.
-
-Next try to do the same tranformations using Hive SQL code. That is write a hive query that
-
-1. Joins all the tables
-2. saved as Parquet
-3. Correct data types
-4. Adds a flag attribute for gravitational waves
-
-
-=== Exercise 4
-
-Use the large table of measurements and compare the performance of the two deployment, spark vs SQL
-
-=== Bonus
-
 Let's start by automating the workflow
 
 Write and execute an Oozie workflow that:
-1. runs a hive query to pre-aggregate the same tables
-2. than runs the spark code to transform the data
+
+1. runs a hive query to pre-aggregate the tables tables
+2. than runs the spark code to transform the data and adds the gravitational waves flag
 
 As a single workflow
 
 Place the oozie workflow file and configuration file in labs/workflow.xml and labs/wf.conf
 respectively
+
+=== Exercise 4
+
+Destroy the deployment of Data Engineering datahub before you finish for the day
+
+If you don't do this you fail the course!!!
+
+=== Exercise 5
+
+* Label the issue as in review

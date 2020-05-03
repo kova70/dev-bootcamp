@@ -1,24 +1,32 @@
+
+
+=== Prepare Exercise
+
+Create an Issue called `Stream Data Processing`
+
+* Add it to the Lab milestone
+* Label the issue as started
+* Assign yourself to the Issue
+
+
 === Exercises 1
 
-Modify the spark steaming job developed developed yesterday to ingest data from Kudu
-rather than HDFS. Leave the rest of the transformations the same.
+Modify the spark steaming job developed developed yesterday to pull data from Kafka
+rather than Hive. Leave the rest of the transformations the same.
 
 Use CSVReader for Record Reader when reading the data from Kafka
-Use MergeContent for creating right-sized files on HDFS
-
-Place the new version of the code in the file labs/spark.py or labs/spark.scala
-depending of the programing language you chose
+Use MergeContent for creating right-sized files on S3
 
 === Exercises 2
 
-Modify the code from the previous exercise to insert into Kudu rather than an HDFS table.
-
-When inserting the data into kudu use the following schema
-link:http://tiny.cloudera.com/measurements.avsc[ Schema ]
+Modify the code to look for gravitational waves and message in a new kafka queue when a wave is found.
 
 Place the new version of the code in the file labs/spark.py or labs/spark.scala
 depending of the programing language you chose
 
-=== Exercises 3
 
-Use Flink to instantaneously  detect gravitational waves
+=== Exercise 3
+
+Destroy the deployment of "Stream Messaging" and "Data Engineering" when you are done with them
+
+If you don't do this you fail the course !!!

@@ -2,13 +2,30 @@
 == Let's do some data warehouse
 
 
+=== Prepare Exercise
+
+Create an Issue called `DW labs`
+
+* Add it to the Lab milestone
+* Label the issue as started
+* Assign yourself to the Issue
+
+
 === Exercise 1
 
-Activate a new virtual warehouse in your datalake
+Activate a link:https://docs.cloudera.com/data-warehouse/cloud/managing-environments/topics/dw-activating-environments-4-data-catalogs.html[new virtual warehouse] in your datalake.
+Activating an environment causes CDP to set up the Kubernetes cluster, so you can get to use the experiences.
 
-https://docs.cloudera.com/data-warehouse/cloud/managing-environments/topics/dw-activating-environments-4-data-catalogs.html
 
 === Exercise 2
+
+Develop code to do the same transformations in the previos labs using Hive SQL code. You can use Hive or Impala it should be nearly identical
+
+1. Joins all the tables
+3. Correct data types
+4. Adds a flag attribute for gravitational waves
+
+=== Exercise 3
 
 Create a new hive cluster data warehouse instance, try the queries that detect
 gravitational wave.
@@ -19,19 +36,20 @@ What one is faster.
 
 Use hue to make your life easier
 
-=== Exercises 3
-
-Now that you figured out the gavitational wave from scratch, how much faster is
-a select query from the joined tables created by spark.
-
-Create a query to find out
-
 === Exercise 4
 
-Destroy the data warehouse cluster. Create a table that is hive managed table.
-Modify your spark code to use warehouse connector.
+Destroy the data warehouse cluster. Create a table that is hive managed table with small subset of the data
+Write a hive ACID query that inserts a field with a 1 or 0 to identify if the measurement identifies a gravitational wave.
 
-Test the performance difference.
+=== Exercise 5
+
+Destroy the deployment of Data Warehouse instances before you end for the day
+
+If you don't do this you fail the course!!!
+
+=== Exercise 5
+
+* Label the issue as in review
 
 
 

@@ -218,7 +218,6 @@ to data from within our CDP environment
 1. Create AMI role trust
 
 .. <github-id>-gravity-role → Trust Relationships
-... <github-id>-gravity-role
 *  link:resources/aws-cdp-idbroker-role-trust-policy.json[idbroker-role-trust-policy]
 
 === Add yourself to the datalake
@@ -242,6 +241,19 @@ to data from within our CDP environment
 .. Go to DataLakes -> Your lake
 .. Actions -> Synchronize Users to Free IPA.
 
+1. Set idbroker mapping to map your id to AWS role. This will give you access to S3 bucket from with and deployment under this lake
+.. Go To AWS Console -> AIM -> Roles
+... Select the role <github-id>-gravity-role
+... Grab the ARN of the role
+.. Go to CDP Control Plane
+... Go To Environment -> Your Environment
+... Click Actions > Manage Access > IDBroker Mappings.
+... Under Current Mappings, click edit,
+... Add: <github-id>-gravity-role
+* group: cdp_<github-id>
+* role: the ARN of <github-id>-gravity-role ( you just grabbed this from AWS console )
+* Click save and sync
+
 === Test Your access to the environment
 
 1. Test DataLake Access
@@ -257,6 +269,11 @@ to data from within our CDP environment
 .. ssh into the node with:
 * user: Workload User Name ( if you don't know this one go to User Management -> Your user )
 * password: Workload User Password
+
+1. 1. Test Access to data
+.. From within the VM run an LS on your S3 bucket
+* Command is: hdfs dfs -ls s3a://<github-id>-data/gravity
+* Add a file in the and delete it if you want as well
 
 If all that works you are done.
 

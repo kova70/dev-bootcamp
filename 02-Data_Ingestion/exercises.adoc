@@ -2,14 +2,24 @@
 
 
 
-=== Exercise 1
+=== Prepare Exercise
 
-Create an Issue called Ingestion labs
+Create an Issue called `Ingestion labs`
+
 * Add it to the Lab milestone
 * Label the issue as started
 * Assign yourself to the Issue
 
-Deploy a data hub cluster with a flow manager template
+=== Exercises 1
+
+Deploy a Nifi Data Hub
+
+* click `Data Hub Clusters` +
+* click `Create Data Hub` +
+* Select your Environment +
+* under `Cluster Template` select `Flow Management Light Duty`
+* give your cluster a name like : `${github_id}-nifi`
+* add the appropriate tags:
 
 === Exercise 2
 
@@ -21,34 +31,64 @@ Source Type, Table, Source URL
 |Source Type| Table| Source URL
 
 |HDFS
-|measurements
-|https://example.com
+|measurements_small
+|hdfs://ec2-35-183-52-133.ca-central-1.compute.amazonaws.com:8020/user/gravity/measurements_small
+
+User: gravity
+
+Password: SuperSecurePassword
 
 |S3
 |galaxies
-|https://example.com
+|https://gravity-data.s3.ca-central-1.amazonaws.com/galaxies/GALAXIES.csv
 
 |RDBMS
 |astrophysicists
-|https://example.com
+|jdbc:oracle:thin:@basecamp.cgzd6g99gswx.ca-central-1.rds.amazonaws.com:1521:GRAVITY
+
+User: Gravity
+
+Password: SuperSecurePassword
 
 |Text File om FTP
 |detectors
-|https://example.com
+|Host : ec2-35-183-52-133.ca-central-1.compute.amazonaws.com
 
-|Kafka
-|measurements small
-|https://example.com
+User: gravity
+
+Password: SuperSecurePassword
+
 |===
 
-For each of the above sources create a NiFi flow to ingested the data into a hive able
+For each of the above sources create a NiFi flow to ingested the data into a hive table in the detectors database.
+Please do create the detector database using any method of your choosing.
 
-The Data: 500 million measurements, 8 detectors, 128 galaxies, 106 astrophysicists
+The Data: 25 million measurements, 8 detectors, 128 galaxies, 106 astrophysicists
 The Tables: measurements, detectors, galaxies, astrophysicists
+
+Take a screenshot of your Nifi flow to ingest all of the data and put it into
+`labs/NifiDeploy.png`
 
 === Exercises 3
 
 Develop the commands to ingest measurements and reference data from Oracle into your cluster using Sqoop.
+
+Connection Details:
+
+Oracle Database
+
+Hostname: basecamp.cgzd6g99gswx.ca-central-1.rds.amazonaws.com
+
+Port: 1521
+
+Database Name: DATABASE
+
+TABLE: GRAVITY.MEASUREMENTS
+
+User: GRAVITY
+
+Password: SuperSecurePassword
+
 You can use degree of parallelism 1 for your initial job.
 
 Sqoop should be available as a command line interface at the terminal in any databub instance
@@ -56,3 +96,13 @@ Sqoop should be available as a command line interface at the terminal in any dat
 Make the tables available in Hive tables for querying
 
 Put the sqoop command used in the file labs/sqoop.adoc
+
+=== Exercise 4
+
+Destroy the deployment of Nifi datahub before you end for the day
+
+If you don't do this you fail the course!!!
+
+=== Exercise 5
+
+* Label the issue as in review

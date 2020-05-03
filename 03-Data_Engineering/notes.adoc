@@ -82,32 +82,6 @@ The longer the batch frequency the easier it tends to be
 Once the batch becomes small enough ( < 5 -> 10 minutes ) we consider that micro batching,
 that falls in to the steaming category and is covered in the next lesson
 
-=== Defining Workflow of a batch process
-
-We typically use Oozie ti define a dependency graph of steps
-
-image::png/DG_Overview.png[Oozie wofkflow]
-
-Oozie is:
-
-* A workflow system to automate batch processes
-* Oozie workflows are a graph of actions
-** Email Action
-** Shell Action ( used more often that it should be)
-** Hive 2 Action
-** Sqoop Action
-** Ssh Action ( needs keys, not fun )
-** DistCp Action
-** Spark Action
-** Git Action
-* Subworkflow action type enables modularization
-* Oozie coordinators are schedules for workflows
-** Coordinators are simplistic, many orgs use Control-M or Autosys instead
-
-XML based, so it's very programmer centric. For better or for worse.
-Each Oozie action is executed in a yarn container.
-Each action when completed messages back to Oozie master
-
 === Transformation in batch processing
 
 Common SQL engine for transformations is Hive
@@ -175,6 +149,31 @@ image::png/hive_remotemetastore.jpg[Oozie wofkflow]
 
 Hive Metastore is shared across all engines to use SQL, including Hive, Impala and Spark SQL
 
+=== Defining Workflow of a batch process
+
+We typically use Oozie ti define a dependency graph of steps
+
+image::png/DG_Overview.png[Oozie wofkflow]
+
+Oozie is:
+
+* A workflow system to automate batch processes
+* Oozie workflows are a graph of actions
+** Email Action
+** Shell Action ( used more often that it should be)
+** Hive 2 Action
+** Sqoop Action
+** Ssh Action ( needs keys, not fun )
+** DistCp Action
+** Spark Action
+** Git Action
+* Subworkflow action type enables modularization
+* Oozie coordinators are schedules for workflows
+** Coordinators are simplistic, many orgs use Control-M or Autosys instead
+
+XML based, so it's very programmer centric. For better or for worse.
+Each Oozie action is executed in a yarn container.
+Each action when completed messages back to Oozie master
 
 
 

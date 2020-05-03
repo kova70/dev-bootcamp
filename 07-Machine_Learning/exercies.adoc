@@ -1,47 +1,30 @@
-# Cloudera Data Science Workbench
+== Cloudera Data Science Workbench
 
-## CDSW Lab Preparation
+=== CDSW Lab Preparation
 
-1, In your Data Lake deploy a CDS instance with the following profile:
+Provision a Cloudera Machine Learning Workspace (CML) following the link:https://docs.cloudera.com/machine-learning/cloud/workspaces/topics/ml-provision-workspaces.html[instructions in the public documentation]
 
-
-2. Log in to CDSW using the URL and credentials provided by your instructor.
-
-## Lab: Introduction to CDSW
-
-1. Familiarize yourself with the CDSW interface including the Projects and Settings pages.
-  * How many vCPU are in this CDSW cluster? How many are available?
-  * Add your job title and company name into the Bio field of your User Settings > Profile page.
-
-    CDSW runs on a gateway node, also called an edge node, of a Cloudera cluster. Cloudera's enterprise customers typically run secure clusters, using the Kerberos authentication protocol. CDSW makes it easy to authenticate to a cluster using Kerberos.
-
-2. Add your Kerberos credentials in the User Settings > Hadoop Authentication page. The instructor will provide you with your Kerberos credentials.
-
-    CDSW integrates with Git and Git hosting services such as GitHub, Bitbucket etc. You can create a new CDSW project from a publically available Git repo with nothing more than the URL, but if you are working with a privately hosted project and/or you plan to push changes back to the server, you will need to authenticate using SSH.
-
-3. Copy the public SSH key from your User Settings > SSH Keys page. Add this public key to your GitHub account so that CDSW can authenticate with GitHub.
-
-    Projects are how you organize work in CDSW, and you'll spend most of your time in CDSW working inside projects.
+=== Exercise 1
 
 4. Create a new private project by cloning the Git repository you created earlier. Because your repository is privately hosted, you will need to use SSH (not HTTPS).
 
 5. Familiarize yourself with the navigation interface within a project. Note that the tiles you see on the left, e.g. Jobs and Sessions, are specific to this project, as opposed to the Jobs and Sessions pages you saw earlier which were generic to all of your projects.
   * Add a description to your project in the Project Settings > Options page.
-  * Confirm the version of the engine being used by your CDSW project.
+  * Confirm the version of the engine being used by your CML project.
 
 6. Using the Files interface, create a new folder called `data` and move `flights.csv` into this directory.
 
 7. Download the file stored at `https://s3.amazonaws.com/cdsw-training/airlines.csv` and upload this file into the same `data` directory.
 
-    CDSW allows you to set environment variables for your project. For more information on environment variables, see: `https://www.cloudera.com/documentation/data-science-workbench/latest/topics/cdsw_environment_variables.html`
+    CML allows you to set environment variables for your project. For more information on environment variables, see: `https://www.cloudera.com/documentation/data-science-workbench/latest/topics/cdsw_environment_variables.html`
 
 8. Add an environment variable to your project called `HOME_AIRPORT` with the IATA 3 letter code of your local airport as its value, e.g. LHR or SFO.
 
     The Workbench is where you interact with the code in your projects. Its main components are the editor, for writing, changing and selecting code, and the session pane, for executing ad-hoc commands and viewing the output of code. The primary way to get to the workbench is by clicking this Open Workbench button at upper right of the project overview page.
 
-9. Open the Workbench, and use the Files sidebar to open the file `example.py` in the editor. Change the code that references `flights.csv` to reference `data/flights.csv` to reflect its new location, and use the File menu to save your changes. CDSW's find feature can help you make sure there are no other places you need to make the change. Do the same in example.R .
+9. Open the Workbench, and use the Files sidebar to open the file `example.py` in the editor. Change the code that references `flights.csv` to reference `data/flights.csv` to reflect its new location, and use the File menu to save your changes. CML's find feature can help you make sure there are no other places you need to make the change. Do the same in example.R .
 
-    CDSW sessions are Docker containers, created from a Docker image, called an engine image in CDSW. The files in your project are mounted to this container when it is provisioned. When starting a CDSW session you also select a kernel, i.e. the program that will be used to run your code, such as Python or R.
+    CML sessions are Docker containers, created from a Docker image, called an engine image in CML. The files in your project are mounted to this container when it is provisioned. When starting a CDSW session you also select a kernel, i.e. the program that will be used to run your code, such as Python or R.
 
 10. In the Workbench, launch a session with the Python 3 kernel, selecting the minimum resource profile available, and wait for the session to be ready, i.e. "Running".
 
@@ -57,11 +40,11 @@
 
 15. Try running a simple command with the `!` shell magic, e.g. type `!ls` in the command prompt.
 
-    Recall that each time you start a session, CDSW creates a new Docker container. Previously we used the Jupyter shell magic to execute shell commands in this Docker container. CDSW also provides a terminal window for your Docker container.
+    Recall that each time you start a session, CML creates a new Docker container. Previously we used the Jupyter shell magic to execute shell commands in this Docker container. CDSW also provides a terminal window for your Docker container.
 
-16. Open the terminal from your CDSW session. When the terminal opens, you'll see an operating system command prompt. This is the Bash shell, so you can run familiar Linux commands here. Use Linux commands to establish your Linux user name within the session, show your current working directory, and list the files in that directory. Run the `klist` command to see your Kerberos principal.
+16. Open the terminal from your CML session. When the terminal opens, you'll see an operating system command prompt. This is the Bash shell, so you can run familiar Linux commands here. Use Linux commands to establish your Linux user name within the session, show your current working directory, and list the files in that directory. Run the `klist` command to see your Kerberos principal.
 
-17. You can also run git commands, either in the terminal or in the CDSW session prompt with the `!` magic. Because we made some changes earlier relating to our file reorganization, use the usual git commands to get the status of these changes, commit them, and push the commit to your GitHub repo.
+17. You can also run git commands, either in the terminal or in the CML session prompt with the `!` magic. Because we made some changes earlier relating to our file reorganization, use the usual git commands to get the status of these changes, commit them, and push the commit to your GitHub repo.
 
     CDSW comes with certain packages preinstalled, as detailed here: `https://www.cloudera.com/documentation/data-science-workbench/latest/topics/cdsw_engines_packaging.html`
 
@@ -71,7 +54,7 @@
 
 19. folium is not one of the pre-installed packages. Verify that you are unable to import the package folium, then install it using pip3 and verify that you can now import it.
 
-    It is simple to run HDFS and Spark commands on the cluster from CDSW. The file `example.py` contains some examples.
+    It is simple to run HDFS and Spark commands on the cluster from CML. The file `example.py` contains some examples.
 
 20. Highlight all the lines in the "Copying Files to HDFS" section of `example.py` (lines 72 through 98), and click "Run Line(s)" in the Run menu to run these lines and see the output in the session console and read through the output. Confirm that the commands were successful by using the `hdfs ls` command in the session prompt.
 
@@ -105,9 +88,9 @@
 
 34. Commit and push to Github the changes you made to the code.
 
-35. When you are finished with this lab, close your CDSW session to release the resources you were using.
+35. When you are finished with this lab, close your CML session to release the resources you were using.
 
-## Challenge Exercises
+== Exercise 2
 
 1. Earlier we set a project environment variable called `HOME_AIRPORT`. Use the documentation for environment variables and the examples already provided to add code that displays a count of the number of flights to your home airport from each of the different departure airports in this dataset. Try changing the environment variable in the settings page and running the code again to see the different results.
 
@@ -123,3 +106,16 @@
 
 7. (**) (Assumes familiarity with linear regression.) Create a DataFrame containing the average departure delay for each carrier and another containing the average departure delay for each departure airport. Join these DataFrames with the flights data to add two additional columns: `carrier_average_delay` and `airport_average_delay`. Use Spark ML and linear regression to suggest which has, on average, a greater impact on actual delay. Comment on your result.
 
+== Exercise 3
+
+Destroy Everything in the Cloud.
+
+Destroy to CML environment instructions link:https://docs.cloudera.com/machine-learning/cloud/workspaces/topics/ml-remove-workspaces.html[in the documentation]
+
+Destroy any Data Hubs you forgot to delete
+
+Destroy to DataLake and Environment as well
+
+You are done !
+
+Congratulations !

@@ -1,8 +1,6 @@
 = Streaming Processing
 
 
-
-
 === Spark Streaming
 
 Stream processing module for Spark
