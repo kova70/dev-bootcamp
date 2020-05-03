@@ -124,22 +124,14 @@ Setup the following trust relationships:
 
 === Cross account permission setup
 
-We can create the cross account AIM role. This will be used by Control plane to enter your account
-and deploy the different VMs and K8s instances.
-
-* Follow the instructions link:https://docs.cloudera.com/management-console/cloud/credentials-aws/topics/mc-create-credentialrole.html[in the documentation]
-
-* You can name the newly created role and policy whatevery you would like though use the <github-id> prefix to easly identify it
-and reduce the chance of name collision.
-
-* Don't forget to get the IAM Role ARN you are going to need it in the next step
-
-
 The final step is to create is to role-based credential, basically given your little world of control plane,
 access to your AWS account. It is though this access Control Plane can auto create ec2 for datalakes and datahubs and some k8s for experiences.
 
 * Follow the instructions link:https://docs.cloudera.com/management-console/cloud/credentials-aws/topics/mc-create-role-based-credential.html[in the documentation]
-* Name the Credential: <github-id>-aws-credentials
+* You can name the newly created role and policy whatevery you would like though use the <github-id> prefix to easily identify it
+and reduce the chance of name collision.
+
+* Don't forget to get the IAM Role ARN you are going to need it in the next step
 
 === Setup a ssh key pair
 
@@ -158,7 +150,7 @@ In the AWS Console:
 
 === Deploy your CDP Environment and Lake
 
-1. You are now ready to deploy CDP environment. *Name the environment <github-id>*
+You are now ready to deploy CDP environment. *Name the environment <github-id>*
 
 Follow the instructions link:https://docs.cloudera.com/management-console/cloud/environments/topics/mc-environment-register-aws-ui.html[in the documentation],
 or you can follow the steps below, both paths should take you to the same place.
@@ -229,6 +221,8 @@ to data from within our CDP environment
 ... <github-id>-gravity-role
 *  link:resources/aws-cdp-idbroker-role-trust-policy.json[idbroker-role-trust-policy]
 
+=== Add yourself to the datalake
+
 1. Create Admin group in CDP
 .. In CDP, navigate to: Management console > User Management > Groups > Create Group
 .. Create group with:
@@ -237,10 +231,36 @@ to data from within our CDP environment
 * Add yourself to that group
 * Click Actions > Update groups > uncheck "sync membership"
 
-=== Grant yourself access to this environment
+1. Configure your "Workload Password", basically your password in IPA
+.. Go To User Management -
+.. Search for your your and click on it
+.. Click "Set Workload Password"
+.. Enter a password for your use. This password will be used to login to anything within your lake, Basically your ssh user
 
-Navigate to your newly created environment under Environments. Click Actions > Manage Access.
+1. Sync the New Groups and user password into your lake
 
-Add your user and give it following roles: DWAdmin, EnviornmentAdmin, MLAdmin, DWUser, EnviornmentUser, MLUser
+.. Go to DataLakes -> Your lake
+.. Actions -> Synchronize Users to Free IPA.
 
-Go back to environment page. Click Actions > Synchronize Users to FreeIPA (to sync users from CDP to your environment)
+=== Test Your access to the environment
+
+1. Test DataLake Access
+.. Go to DataLakes -> Your Data Lake
+.. Click on the CM-UI link, make sure you can get in
+.. Go back to the Datalake page
+.. Click on the Ranger link, make sure everything looks good there as well
+
+1. Test Access to the VM
+.. Go to DataLakes -> Your Data Lake
+.. Click on the Hardware tab ( it's below Cloudera Manager info )
+.. Get the FQDN of the first node ( master 0 )
+.. ssh into the node with:
+* user: Workload User Name ( if you don't know this one go to User Management -> Your user )
+* password: Workload User Password
+
+If all that works you are done.
+
+Congratulations !!!!
+
+If not, well there is always debugging.
+
