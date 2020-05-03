@@ -237,4 +237,10 @@ to data from within our CDP environment
 * Add yourself to that group
 * Click Actions > Update groups > uncheck "sync membership"
 
-1. Test the setup
+=== Grant yourself access to this environment
+
+Navigate to your newly created environment under Environments. Click Actions > Manage Access.
+
+Add your user and give it following roles: DWAdmin, EnviornmentAdmin, MLAdmin, DWUser, EnviornmentUser, MLUser
+
+Go back to environment page. Click Actions > Synchronize Users to FreeIPA (to sync users from CDP to your environment)
