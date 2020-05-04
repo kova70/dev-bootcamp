@@ -281,3 +281,4 @@ Congratulations !!!!
 
 If not, well there is always debugging.
 
+At the end of the day, don't forget to STOP your environment.
