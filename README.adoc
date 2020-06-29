@@ -60,7 +60,7 @@ While there are no hard prerequisites, everyone who attends should have:
 
 1. Clone this repository into your own git repo
 1. Follow the instructions in the link:./GitHub.adoc[GitHub] document to setup your git environment
-1. Go through each folder in this repository from 00 -> 07, watch the specified videos than do the exercises in the exercises.adoc document.
+1. Go through each folder in this repository from 00 -> 07, watch the https://cloudera.highspot.com/spots/5c9cecbf66bbaa14456f6f77[specified videos] then do the exercises in the exercises.adoc document.
 
 ////
 I don't think this is needed as there is no timeline in this document
